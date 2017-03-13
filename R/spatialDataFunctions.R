@@ -50,8 +50,6 @@ kNearNeighbors <- function(scene, k) {
 ##' @param scene a matingScene object
 ##' @param method one of "maxProp", "maxPropSqrd", or 'knn.dist'; see details for
 ##' further description
-##' @param proximityFun a function used to calculate proximity. Not yet
-##' implemented
 ##' @param averageType whether to calculate individual and population proximity
 ##' using the mean or median
 ##' @param subject whether you want pair, individual, population, or all.
@@ -76,13 +74,13 @@ kNearNeighbors <- function(scene, k) {
 ##' @examples
 ##' pop <- simulateScene()
 ##' proximity(pop, "maxProp")
-proximity <- function(scene, method, proximityFun = NULL, averageType = "mean",
+proximity <- function(scene, method, averageType = "mean",
                       subject = "all", zeroPotDist = NULL, k = 6) {
   method <- match.arg(method, c("maxProp", "maxPropSqrd",'knn.dist'))
   subject <- match.arg(subject, c("all", "pair", "population", "individual"),
                        several.ok = TRUE)
   if (is.list(scene) & !is.data.frame(scene)) {
-    potential <- lapply(scene, proximity, method, proximityFun, averageType, subject)
+    potential <- lapply(scene, proximity, method, averageType, subject, zeroPotDist, k)
   } else {
     n <- nrow(scene)
     distMatrix <- pairDist(scene)
