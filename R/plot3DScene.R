@@ -12,7 +12,7 @@
 ##' @param label.cex specify text expansion factor (text size relative to device default)
 ##' @param mt1 label for mating type '1', if dioecious; defaults to 'F'
 ##' @param mt2 label for mating type '2', if dioecious; defaults to 'M'
-##' @param main main title, optional
+##' @param plot.lim.zoom if TRUE, spatial plot limits for lists of scenes are set by the maximum from all scenes
 ##' @param ... optional arguments for the plot function
 ##' @return nothing
 ##' @export
