@@ -9,7 +9,6 @@
 ##' @param sub.ids a vector containing the ids of individuals to be represented in pairwise potential plots
 ##' @param N a positive number indicating the number of individuals to sample if sub.ids = 'random'
 ##' @param sample a character string specifying how to choose a subset of individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all" (see details).
-##' @param main the main title (on top of plot)
 ##' @param ... optional arguments for the plot function
 ##' @details Options for \code{plotType} are 'hist' (histogram), 'net' (network diagram), 'heat' (heatmap), and 'auto'. Default value is 'auto':
 ##' if the mating potential object contains pairwise potential, 'auto' returns all plot types, otherwise it returns histograms of individual potential.
