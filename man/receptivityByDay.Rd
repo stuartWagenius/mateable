@@ -29,6 +29,6 @@ pop <- simulateScene(size = 10)
 receptivityByDay(pop)
 }
 \author{
-Danny Hanson
+Danny Hanson, Amy Waananen
 }
 

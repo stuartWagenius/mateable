@@ -4,22 +4,18 @@
 \alias{plotScene}
 \title{graphical visualization of a mating scene object}
 \usage{
-plotScene(scene, dimension = "auto", opening = NULL, closing = NULL,
-  dailyPoints = TRUE, drawQuartiles = TRUE, sortBy = c("start", "end"),
-  colorBy = NULL, sub = NULL, N = 3, label.sub = TRUE,
-  xlab.spat = NULL, ylab.spat = NULL, pch = 19, pt.cex = 0.75,
-  text.cex = 0.8, plot.lim.spat = TRUE, quartile.lwd = 1,
-  quartile.col = "gray55", peak.col = "gray27", labelID = FALSE,
-  mt1 = "F", mt2 = "M", leg.ncol = 1, ...)
+plotScene(scene, dimension = "auto", dailyPoints = TRUE,
+  drawQuartiles = TRUE, sortBy = c("start", "end"), colorBy = NULL,
+  sub = NULL, N = 3, label.sub = TRUE, xlab.spat = NULL,
+  ylab.spat = NULL, pch = 19, pt.cex = 0.75, label.cex = 0.8,
+  plot.lim.zoom = FALSE, quartile.lwd = 1, quartile.col = "gray55",
+  peak.col = "gray27", labelID = FALSE, mt1 = "F", mt2 = "M",
+  leg.ncol = 1, ...)
 }
 \arguments{
 \item{scene}{a matingScene object}
 
 \item{dimension}{what dimension(s) of the mating scene should be visualized. Possible dimensions are 't' for temporal, 's' for spatial, 'mt' for mating type, and 'auto' (the default). For dimension = 'auto', all dimensions represented in the mating scene object will be plotted.}
-
-\item{opening}{the number of days to adjust the start date displayed for the temporal dimension. Start date defaults to minimum day of year of start date in mating scene object.}
-
-\item{closing}{the number of days to adjust the end date displayed for the temporal dimension. End date defaults to maximum day of year end date in mating scene object.}
 
 \item{dailyPoints}{logical indicating whether daily counts of individuals should be displayed for plots of the temporal dimension}
 
@@ -43,9 +39,9 @@ plotScene(scene, dimension = "auto", opening = NULL, closing = NULL,
 
 \item{pt.cex}{specify point expansion factor (point size relative to device default)}
 
-\item{text.cex}{specify text expansion factor (text size relative to device default)}
+\item{label.cex}{specify text expansion factor (text size relative to device default)}
 
-\item{plot.lim.spat}{if TRUE, spatial plot limits for lists of scenes are set by the maximum from all scenes}
+\item{plot.lim.zoom}{if TRUE, spatial plot limits for lists of scenes are set by the maximum from all scenes}
 
 \item{quartile.lwd}{if \code{drawQuartiles} = TRUE, specifies weight of quartile and peak lines relative to device default.}
 

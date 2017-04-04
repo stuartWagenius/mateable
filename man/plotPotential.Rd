@@ -5,7 +5,7 @@
 \title{graphical visualization of a mating potential object}
 \usage{
 plotPotential(matPot, subject = NULL, plotType = "auto", density = T,
-  sub.ids = NULL, N = 9, sample = "random", main = NULL, ...)
+  sub.ids = NULL, N = 9, sample = "random", ...)
 }
 \arguments{
 \item{matPot}{a mating potential object}
@@ -21,8 +21,6 @@ plotPotential(matPot, subject = NULL, plotType = "auto", density = T,
 \item{N}{a positive number indicating the number of individuals to sample if sub.ids = 'random'}
 
 \item{sample}{a character string specifying how to choose a subset of individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all" (see details).}
-
-\item{main}{the main title (on top of plot)}
 
 \item{...}{optional arguments for the plot function}
 }
