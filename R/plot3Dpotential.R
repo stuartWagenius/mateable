@@ -7,7 +7,6 @@
 ##' @param sub.ids vector, contains the IDs of individuals to be represented in pairwise potential plots
 ##' @param sample character, specifies how to sample individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all". See details.
 ##' @param N integer, indicates the number of individuals to sample if sub.ids = 'random' (default N = 3)
-##' @param main character, the main plot title, if NULL, defaults to 'individual potential' or 'pairwise potential,' corresponding to \code{subject}
 ##' @param text.cex specify text expansion factor (text size relative to device default)
 ##' @param pt.cex specify point expansion factor (point size relative to device default)
 ##' @details The individuals to be represented in the pairwise potential plots can either be specified explicitly
