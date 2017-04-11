@@ -34,7 +34,7 @@ matingSummary <- function(scene, type = "auto", k = 1,
                           compatMethod = "si_echinacea",
                           as.data.frame = FALSE) {
   if (is.list(scene) & !is.data.frame(scene)) {
-    matSum <- lapply(scene, matingSummary)
+    matSum <- lapply(scene, matingSummary, type = type, k = k, compatMethod = compatMethod)
   } else {
     type <- match.arg(type, c("auto", "t", "s", "mt"))
     matSum <- list()
@@ -157,7 +157,7 @@ overlap <- function(scene, overlapOrTotal = c("overlap", "total"),
 ##' [i,j] will be TRUE if individual j was receptive on day i \cr
 ##' If scene is a multi-year matingScene, then receptivityByDay will return a list of matrices
 ##' (as described above) where each matrix represents one year.
-##' @author Danny Hanson
+##' @author Danny Hanson, Amy Waananen
 ##' @examples
 ##' pop <- simulateScene(size = 10)
 ##' receptivityByDay(pop)
@@ -253,7 +253,7 @@ receptivityByDay <- function(scene, summary = FALSE, nameDate = TRUE) {
 ##' Kempenaers (1983), and from Ison et al. (2014), as well
 ##' as variations on different factors of those measures.
 ##' @export
-##' @author Danny Hanson
+##' @author Danny Hanson, Amy Waananen
 ##' @references Augspurger, C.K. (1983) Phenology, flowering synchrony, and fruit set of
 ##' six neotropical shrubs. \emph{Biotropica} \strong{15}, 257-267. \cr\cr
 ##' Ison, J.L., S. Wagenius, D. Reitz., M.V. Ashley. (2014) Mating between
@@ -322,7 +322,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
         n <- sum(fl, na.rm = T) # number of flowering days/years for all individuals
         nind <- apply(fl,1, sum, na.rm = T) # number of flowering days/years per individual
         if(method == 'sync_prop'){
-          prop <- apply(fl,2,function(x){sum(x, na.rm = T)/n}) # proportion of all flowering that occured each day/year
+          prop <- apply(fl,2,function(x){(sum(x, na.rm = T)-1)/n}) # proportion of all flowering that occured each day/year, minus one (individual cannot mate with self)
           indProp <- t(apply(fl,1,function(x){x*prop}))
           totalIndProp <- apply(indProp,1,sum, na.rm = T) # proportion of all flowering that occured on the days/years an individual was flowering
           indSync <- data.frame(id = ids, synchrony = totalIndProp, time = nind)
@@ -401,15 +401,20 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
 
       popSync <- average(indSync[,2])
 
-    } else if (method == 'sync_prop') {
+    } else if (method == 'sync_prop' | method == 'mean_interactions') {
       fl <- receptivityByDay(scene)
-      n <- sum(fl)
-      prop <- apply(fl, 2, function(x){sum(x)/n})
-      indPropDaily<- t(apply(fl,1,function(x){x*prop}))
-      totalIndProp <- rowSums(indPropDaily)
-
+      if(method == "sync_prop"){
+        n <- sum(fl)
+        prop <- apply(fl, 2, function(x){(sum(x)-1)/n})
+        daily<- t(apply(fl,1,function(x){x*prop}))
+        sync <- rowSums(daily)
+      } else{
+        tot <- apply(fl, 2, function(x){sum(x)})
+        daily<- t(apply(fl,1,function(x){x*tot}))
+        sync <- rowSums(daily)
+      }
       pairSync <- NULL
-      indSync <- data.frame(id = scene$id, synchrony = totalIndProp)
+      indSync <- data.frame(id = scene$id, synchrony = sync)
       popSync <- average(indSync[,2])
 
     } else if (method == "overlap") {

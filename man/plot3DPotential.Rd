@@ -5,7 +5,7 @@
 \title{graphical visualization of multiple mating potential objects}
 \usage{
 plot3DPotential(matPots, subject = NULL, density = TRUE, sub.ids = NULL,
-  N = 3, sample = NA, main = NULL, text.cex = 0.7, pt.cex = 0.7)
+  N = 3, sample = NA, text.cex = 0.7, pt.cex = 0.7)
 }
 \arguments{
 \item{matPots}{list, contains one or multiple mating potential objects representing unique potential dimensions}
@@ -19,8 +19,6 @@ plot3DPotential(matPots, subject = NULL, density = TRUE, sub.ids = NULL,
 \item{N}{integer, indicates the number of individuals to sample if sub.ids = 'random' (default N = 3)}
 
 \item{sample}{character, specifies how to sample individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all". See details.}
-
-\item{main}{character, the main plot title, if NULL, defaults to 'individual potential' or 'pairwise potential,' corresponding to \code{subject}}
 
 \item{text.cex}{specify text expansion factor (text size relative to device default)}
 

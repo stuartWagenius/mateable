@@ -9,10 +9,10 @@
 ##' @param ycoord y-axis coordinate system label
 ##' @param pch point type, defaults to pch = 19, solid filled in circle. If pch = NULL, individuals will be labeled by their id.
 ##' @param pt.cex specify point expansion factor (point size relative to device default)
-##' @param text.cex specify text expansion factor (text size relative to device default)
+##' @param label.cex specify text expansion factor (text size relative to device default)
 ##' @param mt1 label for mating type '1', if dioecious; defaults to 'F'
 ##' @param mt2 label for mating type '2', if dioecious; defaults to 'M'
-##' @param main main title, optional
+##' @param plot.lim.zoom if TRUE, spatial plot limits for lists of scenes are set by the maximum from all scenes
 ##' @param ... optional arguments for the plot function
 ##' @return nothing
 ##' @export
@@ -27,10 +27,10 @@
 plot3DScene <- function(scene, dimension = "auto",
                         sub= NULL, N = 3,
                         ycoord = 'northing', xcoord = 'easting',
-                        pch = 19, pt.cex = 0.7,text.cex = 0.7, mt1 = 'F', mt2 = 'M',
-                        zoom = TRUE, main = NULL, ...){
+                        pch = 19, pt.cex = 0.7,label.cex = 0.7, mt1 = 'F', mt2 = 'M',
+                        plot.lim.zoom = FALSE, ...){
   dimension <- match.arg(dimension, c("auto", "t", "s", "mt"),several.ok = TRUE)
-  par.orig <- par("mar", "oma", "mfrow", "xpd")
+  par.orig <- par("mfrow", "xpd")
   on.exit(par(par.orig))
 
   if (!is.list(scene[[1]])){
@@ -59,12 +59,6 @@ plot3DScene <- function(scene, dimension = "auto",
   }
 
   nr <- length(scene)
-  # if (nr > 1 ){
-  #   par(mfrow = c(nr,1), oma = c(4,4,4,1),mar = c(1,6,0,1), xpd = T)
-  # } else {
-  #   par(mfrow = c(nr,1), oma = c(4,4,4,1),mar = c(1,3,0,1), xpd = T)
-  #
-  # }
 
   if (nr > 1 ){
     par(mfrow = c(nr,1), xpd = T)
@@ -104,8 +98,8 @@ plot3DScene <- function(scene, dimension = "auto",
       scene.i$cols <- findInterval(scene.i$start,vec)
     }
     if(spat){
-      if(zoom){
-        plot.default(scene.i[, 'x'], scene.i[, 'y'], type = "n", xaxt = 'n', ylab = "",xlab = '', asp = 1, cex = pt.cex, ...)
+      if(plot.lim.zoom){
+        plot.default(scene.i[, 'x'], scene.i[, 'y'], type = "n", ylab = "",xlab = '', asp = 1, cex = pt.cex, ...)
       } else {
         plot.default(scene.i[, 'x'], scene.i[, 'y'], type = "n", xaxt = 'n', xlim = c(emin,emax),ylim = c(nmin,nmax), xlab = '', ylab = "", asp = 1, cex = pt.cex, ...)
       }
@@ -121,12 +115,12 @@ plot3DScene <- function(scene, dimension = "auto",
     }
     if (temp & spat & comp){
       if (is.null(pch)) {
-        text(scene.i[, 'x'], scene.i[, 'y'], scene.i[, 'id'], col = scene.i$cols, cex = text.cex, ...)
+        text(scene.i[, 'x'], scene.i[, 'y'], scene.i[, 'id'], col = scene.i$cols, cex = label.cex, ...)
       } else {
-        text (scene.i[,'x'], scene.i[,'y'], labs, pos = 2, cex = text.cex)
+        text (scene.i[,'x'], scene.i[,'y'], labs, pos = 2, cex = label.cex)
         if (!is.null(sub)){
           scene.i.sub <- scene.i[scene.i[, 'id'] %in% sub, ]
-          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3, cex =text.cex*1.2, font = 2, ...)
+          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3, cex =label.cex*1.2, font = 2, ...)
           points(scene.i.sub[, 'x'], scene.i.sub[, 'y'], pch = pch,col = scene.i.sub$cols,cex = pt.cex*1.2,  ...)
           points(scene.i[!scene.i[, 'id'] %in% sub, 'x'], scene.i[!scene.i[, 'id'] %in% sub, 'y'], pch = pch, col = scene.i$cols, cex = pt.cex, ...)
         } else {
@@ -134,13 +128,10 @@ plot3DScene <- function(scene, dimension = "auto",
         }
       }
       if(i == nr){
-        if(!is.null(main)){
-          mtext(main, side = 3, line = 2, font = 2, outer = T)
-        } else {
-          mtext('spatial, temporal, and mating type plot', side = 3, line = 2, font = 2, outer = T)
+        if(!plot.lim.zoom){
+          axis(1, ...)
         }
         mtext(xcoord,side = 1,adj = 0.5, cex = 0.75, line = 2)
-        axis(1, cex = 0.75)
         par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
         plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
         legend('topleft', legend = c(format(attr(scene.i,'origin')+minstart, format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))),format = "%b %d"),'',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = T, y.intersp = 0.68, title = 'start date', inset = c(0.02,0.03), cex = 0.75)
@@ -151,7 +142,7 @@ plot3DScene <- function(scene, dimension = "auto",
       } else {
         if (!is.null(sub)){
           scene.i.sub <- scene.i[scene.i[, 'id'] %in% sub, ]
-          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3, cex =text.cex, font = 2, ...)
+          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3, cex =label.cex, font = 2, ...)
           points(scene.i.sub[, 'x'], scene.i.sub[, 'y'], pch = pch,col = scene.i.sub$cols,cex = pt.cex*1.2,  ...)
           points(scene.i[!scene.i[, 'id'] %in% sub, 'x'], scene.i[!scene.i[, 'id'] %in% sub, 'y'], pch = pch, cex = pt.cex, col = scene.i$cols, ...)
         } else {
@@ -159,40 +150,35 @@ plot3DScene <- function(scene, dimension = "auto",
         }
       }
       if(i == nr){
-        if(!is.null(main)){
-          mtext(main, side = 3, line = 2, font = 2, outer = T)
-        } else {
-          mtext('spatial and temporal plot', side = 3, font = 2, line = 1.5, outer = T)
-        }
         mtext(xcoord,side = 1,adj = 0.5, cex = 0.75, line = 3)
-        axis(1, cex = 0.75)
+        if(!plot.lim.zoom){
+          axis(1, ...)
+        }
         par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
         plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
         legend('topleft', legend = c(format(attr(scene.i,'origin')+minstart, format = "%b %d"),' ',' ',' ', format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))),format = "%b %d"),'',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = T, y.intersp = 0.68, title = 'start date', cex = 0.75)
       }
     } else if(spat & comp){
       if (is.null(pch)) {
-        text(scene.i[, 'x'], scene.i[, 'y'], scene.i[, 'id'], cex = text.cex, ...)
+        text(scene.i[, 'x'], scene.i[, 'y'], scene.i[, 'id'], cex = label.cex, ...)
       } else {
         if (!is.null(sub)){
           scene.i.sub <- scene.i[scene.i[, 'id'] %in% sub, ]
-          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3, cex =text.cex*1.2, font = 2, col = 'blue', ...)
+          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3, cex =label.cex*1.2, font = 2, col = 'blue', ...)
           points(scene.i.sub[, 'x'], scene.i.sub[, 'y'], pch = pch, cex = pt.cex*1.2,  ...)
           points(scene.i[!scene.i[, 'id'] %in% sub, 'x'], scene.i[!scene.i[, 'id'] %in% sub, 'y'], pch = pch, cex = pt.cex*1.2, ...)
-          text (scene.i[,'x'], scene.i[,'y'], labs, pos = 2, cex = text.cex)
+          text (scene.i[,'x'], scene.i[,'y'], labs, pos = 2, cex = label.cex)
         } else {
           points(scene.i[, 'x'], scene.i[, 'y'], pch = pch, cex = pt.cex, ...)
-          text (scene.i[,'x'], scene.i[,'y'], labs, pos = 2, cex = text.cex)
+          text (scene.i[,'x'], scene.i[,'y'], labs, pos = 2, cex = label.cex)
         }
       }
       if(i == nr){
-        if(!is.null(main)){
-          mtext(main, side = 3, line = 2, font = 2, outer = T)
-        } else {
-          mtext('spatial and mating type plot', side = 3, font = 2, line = 2, outer = T)
-        }
+
         mtext(xcoord,side = 1,adj = 0.5, cex = 0.75, line = 3)
-        axis(1, cex = 0.75)
+        if(!plot.lim.zoom){
+          axis(1, ...)
+        }
       }
     } else if (temp & comp){
       if (dioecious){
@@ -200,15 +186,13 @@ plot3DScene <- function(scene, dimension = "auto",
         scene.i$index <- seq_along(scene.i[, 1])
         plot.default(scene.i[, 'start'], scene.i$index, ylim = c(1,count), xlim = c(minstart, maxend), type = "n", xlab = 'date', ylab = "",xaxt = 'n',yaxt = 'n', ...)
         segments(scene.i[, 'start'], scene.i$index, scene.i[, 'end'],scene.i$index, col = "gray50", cex = 3, ...)
-        text(scene.i[, 'start']-0.02*maxstart, scene.i[, 'index'], labs, cex = text.cex)
+        text(scene.i[, 'start']-0.02*maxstart, scene.i[, 'index'], labs, cex = label.cex)
         mtext('count',side = 2,adj = 0.5, cex = 0.75, line = 2.5)
-        axis(2)
+        axis(2,...)
         if (i == nr){
           datLabs <- seq(minstart,maxend, by = 7)
-          axis(1, at = datLabs, labels = format(as.Date(attr(scene.i, 'origin') + datLabs, origin = as.Date("1970-01-01")),format = "%b %d"), tick=0.25, cex.axis = 0.9)
+          axis(1, at = datLabs, labels = format(as.Date(attr(scene.i, 'origin') + datLabs, origin = as.Date("1970-01-01")),format = "%b %d"), tick=0.25, ...)
           mtext('date',side = 1,adj = 0.5, cex = 0.75, line = 3)
-          mtext('temporal and mating type plot', font = 2, line = 2, side = 3, outer = T)
-
         }
       }else {
         par(mar = c(1,3,0,1),xpd = F)
@@ -231,20 +215,10 @@ plot3DScene <- function(scene, dimension = "auto",
         }
         if (i == 1){
           legend('topleft', legend = c(format(attr(scene.i,'origin')+ minstart, format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))), format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")), fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'o',xpd = T, y.intersp = 0.68, title = 'start date', inset = c(0.02,0.03), cex = 0.75)
-          if(!is.null(main)){
-            title(main = 'temporal and mating type plot', outer = T)
-          } else {
-            title(main = main, outer = T)
-          }
         }
         if(i == nr){
-          axis(1, at = min(scene.i$s2):max(scene.i$s1), labels = min(scene.i$s2):max(scene.i$s1), cex.axis = 0.75)
+          axis(1, at = min(scene.i$s2):max(scene.i$s1), labels = min(scene.i$s2):max(scene.i$s1), ...)
           mtext('s1',side = 1,adj = 0.5, cex = 0.75, line = 3)
-          if(!is.null(main)){
-            mtext(main, side = 3, line = 2, font = 2, outer = T)
-          } else {
-            mtext('temporal and mating type plot', side = 3, font = 2, line = 2, outer = T)
-          }
         }
       }
     }

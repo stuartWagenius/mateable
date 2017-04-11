@@ -31,7 +31,7 @@ this method is useful for comparing to data that has no information on
 individuals. "average-peak" calculates the average (determined by argument
 \code{averageType}) number of individuals receptive
 per day divided by the maximum number of individuals receptive per day.
-All "simple" methods do not have pairwise or individual values.}
+All "simple" methods do not have pairwise or individual values. "mean_interactions" gives the mean number of potential mating interactions an individual obtains per unit time for the period that the individual was flowering.}
 
 \item{subject}{one of "population", "pairwise", "individual", or "all"
 - see Value for more details.}
@@ -87,7 +87,7 @@ pop2 <- simulateScene(size = 1234, sdDur = 5, sk = 1)
 syncVals <- synchrony(pop2, "sync_nn", "all", "median", 123)
 }
 \author{
-Danny Hanson
+Danny Hanson, Amy Waananen
 }
 \references{
 Augspurger, C.K. (1983) Phenology, flowering synchrony, and fruit set of

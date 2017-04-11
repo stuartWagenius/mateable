@@ -6,7 +6,7 @@
 \usage{
 plot3DScene(scene, dimension = "auto", sub = NULL, N = 3,
   ycoord = "northing", xcoord = "easting", pch = 19, pt.cex = 0.7,
-  text.cex = 0.7, mt1 = "F", mt2 = "M", ...)
+  label.cex = 0.7, mt1 = "F", mt2 = "M", plot.lim.zoom = FALSE, ...)
 }
 \arguments{
 \item{scene}{a matingScene object}
@@ -25,11 +25,13 @@ plot3DScene(scene, dimension = "auto", sub = NULL, N = 3,
 
 \item{pt.cex}{specify point expansion factor (point size relative to device default)}
 
-\item{text.cex}{specify text expansion factor (text size relative to device default)}
+\item{label.cex}{specify text expansion factor (text size relative to device default)}
 
 \item{mt1}{label for mating type '1', if dioecious; defaults to 'F'}
 
 \item{mt2}{label for mating type '2', if dioecious; defaults to 'M'}
+
+\item{plot.lim.zoom}{if TRUE, spatial plot limits for lists of scenes are set by the maximum from all scenes}
 
 \item{...}{optional arguments for the plot function}
 }

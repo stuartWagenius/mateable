@@ -36,7 +36,7 @@ necessary ones for the mating scene. If NULL, it will be ignored.}
 date columns if those columns are characters or (2) the origin for the start
 and end date columns if those columns are numeric. It is used in as.Date}
 
-\item{split}{character indicating a column to split the result into a list by the values of that column}
+\item{split}{character name for a column with values by which the result should be split}
 }
 \value{
 a matingScene object, either a single dataframe in standard format
