@@ -113,7 +113,7 @@ Now we turn from the spatial dimension of the mating scene to the temporal dimen
 
 ```{r}
 plotScene(eelr, "t")
-plotScene(eelr, "t", sub = 'all', drawQuartiles = FALSE, text.cex = 0.5)
+plotScene(eelr, "t", sub = 'all', drawQuartiles = FALSE, label.cex = 0.5)
 ```
 
 These figures shows the duration of reproductive period during 2012 for each of the 44 individuals in the population with a horizontal line starting on the date the individual first produced pollen and ending on the date when pollen was last produced. Here the individuals are sorted from bottom to top by their first day. The dots indicate the total number of individuals participating in mating on each day.
@@ -166,7 +166,7 @@ Notice that 1509 is not isolated in time from potential mates.
 Function `plotScene` is useful because it enables us to visualize all dimensions of the mating scene (in this data set we only have two dimensions). In the below figure we also highlight the focal plants we selected above so we can see where and when they participate in mating.
 
 ```{r}
-plotScene(eelr, c('s','t'), sub = focalPlants, N = 4, text.cex = 0.5)
+plotScene(eelr, c('s','t'), sub = focalPlants, N = 4, label.cex = 0.5)
 ```
 
 Function `plot3DScene` is also useful because it enables us to visualize two dimensions of the mating scene in one panel.
@@ -180,9 +180,9 @@ plot3DScene(eelr, pt.cex = .5, sub = focalPlants, N = 4)
 Function `matingSummary` calculates many characteristics of the entire mating scene in all three dimensions. Though in this example data set we have only dimensions.
 
 ```{r, collapse = TRUE, results='hold'}
-eSum <- matingSummary(eelr)
-eSum[c("meanSD", "sdSD", "meanDur", "sdDur", "peak")] # index
-eSum[c("minX", "minY", "k1")]
+eSum <- matingSummary(eelr, as.data.frame = T)
+eSum[,c("meanSD", "sdSD", "meanDur", "sdDur", "peak")] # index
+eSum[,c("minX", "minY", "k1")]
 eSum$minX # by name
 eSum$minY
 eSum$k1
@@ -288,7 +288,7 @@ All of the different analysis and plotting methods can be applied directly to mu
 We can make multi-panel plots of the `matingScene` over years. The plot limits are consistent across years, making it easier to compare differences.
 
 ```{r,fig.height = 8}
-plotScene(multiYearScene,sub = c(1,6,12,18,13,24,55,45,60), text.cex = 0.8)
+plotScene(multiYearScene,sub = c(1,6,12,18,13,24,55,45,60), label.cex = 0.8)
 ```
 
 We can also combine mating dimensions for multi-year plots using `plot3DScene`.

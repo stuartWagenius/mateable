@@ -79,10 +79,11 @@ plotScene <- function(scene, dimension = "auto",
   }
 
   if(temp){
-    starts <- unlist(lapply(scene, function(x) min(x['start'])+ attr(x,'origin')))
-    minstart <- as.Date(min(starts), origin = '1970-01-01')
-    ends <- unlist(lapply(scene, function(x) max(x['end']) + attr(x,'origin')))
-    maxend <- as.Date(max(ends), origin = '1970-01-01')
+    starts <- unlist(lapply(scene, function(x) min(x[,'start']+ attr(x,'origin'))))
+    years <- as.numeric(sapply(scene, function(x) strsplit(as.character(attr(x,'origin')), split = '-')[[1]][1]))
+    minstart <- min(strptime(as.Date(starts, origin = '1970-01-01'),format = '%Y-%m-%d')$yday)
+    ends <- unlist(lapply(scene, function(x) as.Date(max(x[,'end'] + attr(x,'origin')), origin = '1970-01-01', format = '%j')))
+    maxend <- max(strptime(as.Date(ends, origin = '1970-01-01'),format = '%Y-%m-%d')$yday)
     count <- max(unlist(lapply(scene, nrow)))
   }
 
@@ -144,13 +145,15 @@ plotScene <- function(scene, dimension = "auto",
     }
 
     if (temp){
+      ms <- as.Date(minstart, origin = paste(years[i],'-01-01',sep = ''))
+      me <- as.Date(maxend, origin = paste(years[i],'-01-01',sep = ''))
       if (labelID){
-        plot.default(scene.i[, 'start'] + attr(scene.i, "origin"), scene.i$index, ylim = c(1,count), xlim = c(minstart, maxend), type = "n", xlab = '', ylab = "",xaxt = 'n',yaxt = 'n', ...)
+        plot.default(scene.i[, 'start'] + attr(scene.i, "origin"), scene.i$index, ylim = c(1,count), xlim = c(ms, me), type = "n", xlab = '', ylab = "",xaxt = 'n',yaxt = 'n', ...)
         segments(scene.i[, 'start'] + attr(scene.i, "origin"), scene.i$index, scene.i[, 'end'] + attr(scene.i, "origin"),scene.i$index, col = cols.seg, cex = 3, ...)
         axis(2, labels = scene.i$id, at = scene.i$index, las = 1, ...)
         mtext(attr(scene.i,'originalNames')[1],side = 2,adj = 0.5, cex = 0.75, line = 7.5)
       } else {
-        plot.default(scene.i[, 'start'] + attr(scene.i, "origin"), scene.i$index, ylim = c(1,count), xlim = c(minstart, maxend), type = "n", xlab = '', ylab = "",xaxt = 'n',yaxt = 'n', ...)
+        plot.default(scene.i[, 'start'] + attr(scene.i, "origin"), scene.i$index, ylim = c(1,count), xlim = c(ms, me), type = "n", xlab = '', ylab = "",xaxt = 'n',yaxt = 'n', ...)
         segments(scene.i[, 'start'] + attr(scene.i, "origin"), scene.i$index, scene.i[, 'end'] + attr(scene.i, "origin"),scene.i$index, col = cols.seg, cex = 3, ...)
         mtext('count',side = 2,adj = 0.5, cex = 0.75, line = 2.5)
         axis(2,...)
@@ -158,7 +161,7 @@ plotScene <- function(scene, dimension = "auto",
       mtext(names(scene)[i],side = 2,adj = 0.5, cex = 0.75, line = 5, font = 2, las = 3)
 
       if (i == nr){
-        datLabs <- seq(minstart,maxend, by = 7)
+        datLabs <- seq(ms,me, by = 7)
         axis(1, at = datLabs, labels = format(datLabs,format = "%b %d"), tick=0.25, ...)
         mtext('date',side = 1,adj = 0.5, cex = 0.75, line = 3)
       }
