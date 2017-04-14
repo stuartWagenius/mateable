@@ -80,9 +80,9 @@ plotScene <- function(scene, dimension = "auto",
 
   if(temp){
     starts <- unlist(lapply(scene, function(x) min(x['start'])+ attr(x,'origin')))
-    minstart <- as.Date(min(starts), origin = '1970-01-01')
+    minstart <- strftime(as.Date(min(starts), origin = '1970-01-01'), format = "%j")
     ends <- unlist(lapply(scene, function(x) max(x['end']) + attr(x,'origin')))
-    maxend <- as.Date(max(ends), origin = '1970-01-01')
+    maxend <- strftime(as.Date(max(ends), origin = '1970-01-01'), format = "%j")
     count <- max(unlist(lapply(scene, nrow)))
   }
 
