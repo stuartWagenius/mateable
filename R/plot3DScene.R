@@ -30,7 +30,7 @@ plot3DScene <- function(scene, dimension = "auto",
                         pch = 19, pt.cex = 0.7,label.cex = 0.7, mt1 = 'F', mt2 = 'M',
                         plot.lim.zoom = FALSE, ...){
   dimension <- match.arg(dimension, c("auto", "t", "s", "mt"),several.ok = TRUE)
-  par.orig <- par("mfrow", "xpd")
+  par.orig <- par("mfrow", "xpd", "mar", "oma")
   on.exit(par(par.orig))
 
   if (!is.list(scene[[1]])){
