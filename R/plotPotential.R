@@ -186,10 +186,10 @@ plotPotential <-   function(matPot,
 
 
 
-plot_net <- function (flowmat, names = NULL, lab.size = 1.5, add = FALSE,
-                      fig.size = 1.3, mar = c(0.25, 0.25, 0.25, 0.25), nullflow = NULL, minflow = NULL, maxflow = NULL,
-                      maxarrow = 10, minarrow = 1, dcirc = 1.2, bty = "o",
-                      labz.size = 1.5, ...){
+plot_net <- function (flowmat, names = NULL, add = FALSE,
+                      fig.size = 1.7, mar = c(0.25, 0.25, 0.25, 0.25), nullflow = NULL, minflow = NULL, maxflow = NULL,
+                      maxarrow = 10, minarrow = 1, bty = "o",
+                      labz.size = 0.5, xpd= TRUE, ...){
   nm <- par("mar")
   components <- names
   numcomp <- length(components)
@@ -205,30 +205,31 @@ plot_net <- function (flowmat, names = NULL, lab.size = 1.5, add = FALSE,
   if (is.null(minflow))
     minflow <- min(flowmatrix[flowmatrix != zero])
   figlim <- c(-fig.size, fig.size)
-  mar <- pmax(mar, 0)
+  # mar <- pmax(mar, 0)
   par(mar = mar)
   plot(c(0, 0), type = "n", ylab = "", asp = 1, xaxt = "n",
        yaxt = "n", frame.plot = FALSE, xlim = figlim, ylim = figlim,
        main = '', xlab = "")
-  alpha <- pi/2 - (1:numcomp) * 2 * pi/numcomp
+  alpha <- (pi/2 - (1:numcomp) * 2 * pi/numcomp)
   xl <- cos(alpha)
   yl <- sin(alpha)
   if(length(labz.size) == 1) labz.size <- rep(labz.size, numcomp)
   for (i in 1:numcomp) {
     if (xl[i] > 0)
-      adjustx = -0.5
+      adjustx = -0.25
+      adjustx = 0
     if (xl[i] < 0)
-      adjustx = 1.5
+      adjustx = 1.25
     if (abs(xl[i]) < 1e-04)
-      adjustx = 1
+      adjustx = 0.75
     if (yl[i] > 0)
-      adjusty = -0.5
+      adjusty = -0.25
     if (yl[i] < 0)
-      adjusty = 1.5
+      adjusty = 1.25
     if (abs(yl[i]) < 1e-04)
-      adjusty = 1
-    text(xl[i], yl[i], components[i], adj = c(adjustx, adjusty),
-         cex = par("cex") * labz.size[i])
+      adjusty = 0.75
+    text(xl[i] * 0.95 , yl[i] * 0.95 , components[i], adj = c(adjustx, adjusty),
+         cex = par("cex") * labz.size[i], xpd = TRUE)
   }
   par(lend = 'round')
   darrow <- (maxarrow - minarrow)/(maxflow - minflow)
