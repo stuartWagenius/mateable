@@ -30,7 +30,7 @@ plot3DScene <- function(scene, dimension = "auto",
                         pch = 19, pt.cex = 0.7,label.cex = 0.7, mt1 = 'F', mt2 = 'M',
                         plot.lim.zoom = FALSE, ...){
   dimension <- match.arg(dimension, c("auto", "t", "s", "mt"),several.ok = TRUE)
-  par.orig <- par("mfrow", "xpd")
+  par.orig <- par("mfrow", "xpd", "mar", "oma")
   on.exit(par(par.orig))
 
   if (!is.list(scene[[1]])){
@@ -79,10 +79,6 @@ plot3DScene <- function(scene, dimension = "auto",
     ends <- unlist(lapply(scene, function(x) as.Date(max(x[,'end'] + attr(x,'origin')), origin = '1970-01-01', format = '%j')))
     maxend <- max(strptime(as.Date(ends, origin = '1970-01-01'),format = '%Y-%m-%d')$yday)
     count <- max(unlist(lapply(scene, nrow)))
-    # count <- max(unlist(lapply(scene, nrow)))
-    # minstart <- min(unlist(lapply(scene, function(x) x['start'])))
-    # maxstart <- max(unlist(lapply(scene, function(x) x['start'])))
-    # maxend <- max(unlist(lapply(scene, function(x) x['end'])))
   }
 
   if(comp){

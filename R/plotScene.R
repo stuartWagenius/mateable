@@ -48,7 +48,7 @@ plotScene <- function(scene, dimension = "auto",
                       ...){
 
   dimension <- match.arg(dimension, c("auto", "t", "s", "mt"),several.ok = TRUE)
-  par.orig <- par("mfrow", "xpd")
+  par.orig <- par("mfrow", "xpd", "mar", "oma")
   on.exit(par(par.orig))
 
   if (!is.list(scene[[1]])){
@@ -166,7 +166,7 @@ plotScene <- function(scene, dimension = "auto",
         mtext('date',side = 1,adj = 0.5, cex = 0.75, line = 3)
       }
 
-      if (!is.null(sub)){
+      if (!is.null(sub)  & nrow(scene.i[scene.i$id %in% sub, ]) > 0){
         segments(scene.i[scene.i$id %in% sub, 'start'] + attr(scene.i, "origin"), scene.i[scene.i$id %in% sub, 'index'], scene.i[scene.i$id %in% sub, 'end'] + attr(scene.i, "origin"),scene.i[scene.i$id %in% sub, 'index'], col = cols.sub, ...)
         if(label.sub){
           text(scene.i[scene.i$id %in% sub, 'start'] + attr(scene.i, "origin") - 2, scene.i[scene.i$id %in% sub, 'index'], scene.i[scene.i$id %in% sub, 'id'], cex = label.cex)
@@ -213,7 +213,7 @@ plotScene <- function(scene, dimension = "auto",
       } else {
         points(scene.i[, 'x'], scene.i[, 'y'], pch = pch, cex = pt.cex, col = cols.pt, ...)
       }
-      if (!is.null(sub)){
+      if (!is.null(sub)  & nrow(scene.i[scene.i$id %in% sub, ]) > 0){
         scene.i.sub <- scene.i[scene.i[, 'id'] %in% sub, ]
         if(label.sub){
           text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3,xpd = T,cex = label.cex, ...)
