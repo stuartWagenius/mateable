@@ -368,7 +368,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
       pairSync <- NA
       popSync <- NA
     } else if (method == "augspurger") {
-      if (subject %in% c("pair", "all")) {
+      if (subject %in% c("pairwise", "all")) {
         syncMatrix <- overlap(scene, "overlap", compareToSelf = T)
         pairSync <- syncMatrix/scene$duration
       }
@@ -418,7 +418,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
       popSync <- average(indSync[,2])
 
     } else if (method == "overlap") {
-      if (subject %in% c("pair", "all")) {
+      if (subject %in% c("pairwise", "all")) {
         syncMatrix <- overlap(scene, "overlap", compareToSelf = T)
         eitherMatrix <- overlap(scene, "total", compareToSelf = T)
         pairSync <- syncMatrix/eitherMatrix
@@ -450,7 +450,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
         }
       }
 
-      if (subject %in% c("pair", "all")) {
+      if (subject %in% c("pairwise", "all")) {
         syncMatrix <- overlap(scene, "overlap", compareToSelf = T)
         eitherMatrix <- overlap(scene, "total", compareToSelf = T)
         pairSyncInit <- syncMatrix/eitherMatrix
