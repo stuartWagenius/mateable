@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // pair_si_ech
 NumericMatrix pair_si_ech(IntegerVector s1, IntegerVector s2);
-RcppExport SEXP mateable_pair_si_ech(SEXP s1SEXP, SEXP s2SEXP) {
+RcppExport SEXP _mateable_pair_si_ech(SEXP s1SEXP, SEXP s2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -19,7 +19,7 @@ END_RCPP
 }
 // pair_dioecious
 NumericMatrix pair_dioecious(IntegerVector s1);
-RcppExport SEXP mateable_pair_dioecious(SEXP s1SEXP) {
+RcppExport SEXP _mateable_pair_dioecious(SEXP s1SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -30,7 +30,7 @@ END_RCPP
 }
 // row_medians
 NumericVector row_medians(NumericMatrix toSort);
-RcppExport SEXP mateable_row_medians(SEXP toSortSEXP) {
+RcppExport SEXP _mateable_row_medians(SEXP toSortSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -41,7 +41,7 @@ END_RCPP
 }
 // row_kth
 NumericVector row_kth(NumericMatrix toSort, int k);
-RcppExport SEXP mateable_row_kth(SEXP toSortSEXP, SEXP kSEXP) {
+RcppExport SEXP _mateable_row_kth(SEXP toSortSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -53,7 +53,7 @@ END_RCPP
 }
 // kemp_ind
 NumericVector kemp_ind(IntegerVector byDay, IntegerVector starts, IntegerVector ends, IntegerVector durs, bool compSelf);
-RcppExport SEXP mateable_kemp_ind(SEXP byDaySEXP, SEXP startsSEXP, SEXP endsSEXP, SEXP dursSEXP, SEXP compSelfSEXP) {
+RcppExport SEXP _mateable_kemp_ind(SEXP byDaySEXP, SEXP startsSEXP, SEXP endsSEXP, SEXP dursSEXP, SEXP compSelfSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -68,7 +68,7 @@ END_RCPP
 }
 // daysSync_noself
 IntegerMatrix daysSync_noself(IntegerVector starts, IntegerVector ends, int n);
-RcppExport SEXP mateable_daysSync_noself(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
+RcppExport SEXP _mateable_daysSync_noself(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -81,7 +81,7 @@ END_RCPP
 }
 // daysSync_self
 IntegerMatrix daysSync_self(IntegerVector starts, IntegerVector ends, int n);
-RcppExport SEXP mateable_daysSync_self(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
+RcppExport SEXP _mateable_daysSync_self(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -94,7 +94,7 @@ END_RCPP
 }
 // daysEither_noself
 IntegerMatrix daysEither_noself(IntegerVector starts, IntegerVector ends, int n);
-RcppExport SEXP mateable_daysEither_noself(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
+RcppExport SEXP _mateable_daysEither_noself(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -107,7 +107,7 @@ END_RCPP
 }
 // daysEither_self
 IntegerMatrix daysEither_self(IntegerVector starts, IntegerVector ends, int n);
-RcppExport SEXP mateable_daysEither_self(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
+RcppExport SEXP _mateable_daysEither_self(SEXP startsSEXP, SEXP endsSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -117,4 +117,22 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(daysEither_self(starts, ends, n));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_mateable_pair_si_ech", (DL_FUNC) &_mateable_pair_si_ech, 2},
+    {"_mateable_pair_dioecious", (DL_FUNC) &_mateable_pair_dioecious, 1},
+    {"_mateable_row_medians", (DL_FUNC) &_mateable_row_medians, 1},
+    {"_mateable_row_kth", (DL_FUNC) &_mateable_row_kth, 2},
+    {"_mateable_kemp_ind", (DL_FUNC) &_mateable_kemp_ind, 5},
+    {"_mateable_daysSync_noself", (DL_FUNC) &_mateable_daysSync_noself, 3},
+    {"_mateable_daysSync_self", (DL_FUNC) &_mateable_daysSync_self, 3},
+    {"_mateable_daysEither_noself", (DL_FUNC) &_mateable_daysEither_noself, 3},
+    {"_mateable_daysEither_self", (DL_FUNC) &_mateable_daysEither_self, 3},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_mateable(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
