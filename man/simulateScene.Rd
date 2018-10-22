@@ -4,9 +4,9 @@
 \alias{simulateScene}
 \title{Simulate a Mating Scene}
 \usage{
-simulateScene(size = 30, meanSD = "2012-07-12", sdSD = 6, meanDur = 11,
-  sdDur = 3, skSD = 0, xRange = c(0, 100), yRange = c(0, 100),
-  distro = "unif", sAlleles = 10)
+simulateScene(size = 30, meanSD = "2012-07-12", sdSD = 6,
+  meanDur = 11, sdDur = 3, skSD = 0, xRange = c(0, 100),
+  yRange = c(0, 100), distro = "unif", sAlleles = 10)
 }
 \arguments{
 \item{size}{integer number of plants}

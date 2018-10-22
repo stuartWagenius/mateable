@@ -5,8 +5,9 @@
 \title{Create a matingScene object from a data frame}
 \usage{
 makeScene(df, multiYear = FALSE, startCol = "start", endCol = "end",
-  xCol = "x", yCol = "y", s1Col = "s1", s2Col = "s2", idCol = "id",
-  otherCols = NULL, dateFormat = "\%Y-\%m-\%d", split = NULL)
+  xCol = "x", yCol = "y", s1Col = "s1", s2Col = "s2",
+  idCol = "id", otherCols = NULL, dateFormat = "\%Y-\%m-\%d",
+  split = NULL)
 }
 \arguments{
 \item{df}{a data frame containing information about a mating scene,
