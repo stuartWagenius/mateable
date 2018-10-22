@@ -42,7 +42,7 @@ If \code{as.data.frame = TRUE}, the output will be a dataframe with columns cont
 Create a summary of information contained within a matingScene object.
 }
 \examples{
-eelr <- makeScene(eelr2012, startCol = "firstDay", endCol = "lastDay",
+eelr <- makeScene(ech2012, startCol = "firstDay", endCol = "lastDay",
   xCol = "Ecoord", yCol = "Ncoord", idCol = "tagNo")
 eelrSum <- matingSummary(eelr)
 eelrSum[c("minX", "minY", "maxX", "maxY")]

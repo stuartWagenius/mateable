@@ -42,7 +42,7 @@ For any function in `mateable` you can learn more by typing a question mark befo
 
 To analyze data using mateable, you must convert a data frame containing spatial, temporal, and/or mating type information to a mating scene object. To do so, use the function `makeScene`, specifying which columns contain mating scene coordinates. 
 
-In this section we look at flowering during 2012 in a remnant prairie population of *Echinacea angustifolia*, the narrow-leaved purple coneflower. The data frame `eelr2012` is included in the package.
+In this section we look at flowering during 2012 in a remnant prairie population of *Echinacea angustifolia*, the narrow-leaved purple coneflower. The data frame `ech2012` is included in the package.
 
 ```{r}
 str(ech2012)
@@ -57,7 +57,7 @@ For the first sections of this introduction to mateable we will focus on one pop
 
 ```{r}
 eelr <- ech2012[ech2012$pop %in% 'eelr',]
-eelr <- makeScene(eelr2012, startCol = "firstDay", endCol = "lastDay",
+eelr <- makeScene(eelr, startCol = "firstDay", endCol = "lastDay",
                        xCol = "Ecoord", yCol = "Ncoord", idCol = "tagNo")
 
 ```

@@ -28,7 +28,7 @@
 #' plotPotential(prox, "ind")
 #'
 #'
-#' str(eelr2012)
-#' ee <- makeScene(eelr2012, FALSE, "firstDay", "lastDay", "Ecoord", "Ncoord", idCol = "tagNo")
+#' str(ech2012)
+#' ee <- makeScene(ech2012, FALSE, "firstDay", "lastDay", "Ecoord", "Ncoord", idCol = "tagNo")
 #'
 NULL
