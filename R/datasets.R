@@ -1,4 +1,4 @@
-#' Information about mating scene at site eelr in 2012.
+#' Information about mating scene at sites eelr and nwlf in 2012.
 #'
 #' This dataframe contains information about all 53 plants that flowered in 2012
 #' at the sites  eelr (East Elk Lake Road) and Northwest of Landfill (nwlf). Kelly
@@ -18,13 +18,13 @@
 #' \item Ncoord, the y-coordinate of each plant in meters
 #' }
 #' @docType data
-#' @name eelr2012
-#' @usage eelr2012
+#' @name ech2012
+#' @usage ech2012
 #' @format A 53 x 6 data frame
 #' @references Wagenius, S. 2006. Scale-dependence of reproductive failure in
 #' fragmented \emph{Echinacea} populations. Ecology 87: 931-941.
 #' @keywords datasets
 #' @examples
-#' dim(eelr2012)
-#' str(eelr2012)
+#' dim(ech2012)
+#' str(ech2012)
 NULL

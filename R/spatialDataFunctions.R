@@ -135,7 +135,7 @@ proximity <- function(scene, method, averageType = "mean",
     } else if (method == 'knn.dist'){
         subject <- c('population','individual')
         indProx <- data.frame(id = scene$id, knn.dist = -1, k = k)
-        indProx$knn.dist <- kNearNeighbors(pop, k)[,k]
+        indProx$knn.dist <- kNearNeighbors(scene, k)[,k]
         popProx <- average(indProx$knn.dist)
     }
 

@@ -6,7 +6,8 @@
 \usage{
 plot3DScene(scene, dimension = "auto", sub = NULL, N = 3,
   ycoord = "northing", xcoord = "easting", pch = 19, pt.cex = 0.7,
-  label.cex = 0.7, mt1 = "F", mt2 = "M", plot.lim.zoom = FALSE, ...)
+  label.cex = 0.7, mt1 = "F", mt2 = "M", plot.lim.zoom = FALSE,
+  ...)
 }
 \arguments{
 \item{scene}{a matingScene object}

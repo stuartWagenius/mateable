@@ -26,7 +26,7 @@
 ##' of lists, one list for each year.
 ##' If \code{as.data.frame = TRUE}, the output will be a dataframe with columns containing summary information and, if applicable, an 'id' column identifying what portion of the matingSummary object it summarized. If the scene is a multi-year matingScene, then the output will be a list of dataframes, one list for each year.
 ##' @examples
-##' eelr <- makeScene(eelr2012, startCol = "firstDay", endCol = "lastDay",
+##' eelr <- makeScene(ech2012, startCol = "firstDay", endCol = "lastDay",
 ##'   xCol = "Ecoord", yCol = "Ncoord", idCol = "tagNo")
 ##' eelrSum <- matingSummary(eelr)
 ##' eelrSum[c("minX", "minY", "maxX", "maxY")]
