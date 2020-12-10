@@ -4,8 +4,14 @@
 \alias{proximity}
 \title{Make potentials object--spatial proximity}
 \usage{
-proximity(scene, method, averageType = "mean", subject = "all",
-  zeroPotDist = NULL, k = 6)
+proximity(
+  scene,
+  method,
+  averageType = "mean",
+  subject = "all",
+  zeroPotDist = NULL,
+  k = 6
+)
 }
 \arguments{
 \item{scene}{a matingScene object}

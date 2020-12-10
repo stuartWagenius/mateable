@@ -4,9 +4,16 @@
 \alias{plot3DPotential}
 \title{graphical visualization of multiple mating potential objects}
 \usage{
-plot3DPotential(matPots, subject = NULL, density = TRUE,
-  sub.ids = NULL, N = 3, sample = NA, text.cex = 0.7,
-  pt.cex = 0.7)
+plot3DPotential(
+  matPots,
+  subject = NULL,
+  density = TRUE,
+  sub.ids = NULL,
+  N = 3,
+  sample = NA,
+  text.cex = 0.7,
+  pt.cex = 0.7
+)
 }
 \arguments{
 \item{matPots}{list, contains one or multiple mating potential objects representing unique potential dimensions}

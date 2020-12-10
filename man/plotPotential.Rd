@@ -4,8 +4,16 @@
 \alias{plotPotential}
 \title{graphical visualization of a mating potential object}
 \usage{
-plotPotential(matPot, subject = NULL, plotType = "auto", density = T,
-  sub.ids = NULL, N = 9, sample = "random", ...)
+plotPotential(
+  matPot,
+  subject = NULL,
+  plotType = "auto",
+  density = T,
+  sub.ids = NULL,
+  N = 9,
+  sample = "random",
+  ...
+)
 }
 \arguments{
 \item{matPot}{a mating potential object}

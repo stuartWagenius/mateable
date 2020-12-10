@@ -4,8 +4,15 @@
 \alias{dailyOMP}
 \title{Calculate daily outcrossed mating potential}
 \usage{
-dailyOMP(scene, k = 3, days = NULL, gamma = 1/13.3,
-  nn.constant = FALSE, sum = FALSE, mean = FALSE)
+dailyOMP(
+  scene,
+  k = 3,
+  days = NULL,
+  gamma = 1/13.3,
+  nn.constant = FALSE,
+  sum = FALSE,
+  mean = FALSE
+)
 }
 \arguments{
 \item{scene}{a matingScene object}

@@ -4,7 +4,9 @@
 \name{ech2012}
 \alias{ech2012}
 \title{Information about mating scene at sites eelr and nwlf in 2012.}
-\format{A 53 x 6 data frame}
+\format{
+A 53 x 6 data frame
+}
 \usage{
 ech2012
 }

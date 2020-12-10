@@ -2,11 +2,11 @@
 title: "Investigate mating scenes"
 author: "Stuart Wagenius, Danny Hanson, and Amy Waananen"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Investigate mating scenes}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette: default
+  html_document: default
+vignette: |
+  %\VignetteIndexEntry{Investigate mating scenes} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
 
 ```{r include=FALSE}
