@@ -40,7 +40,7 @@ Options for \code{plotType} are 'hist' (histogram), 'net' (network diagram), 'he
 if the mating potential object contains pairwise potential, 'auto' returns all plot types, otherwise it returns histograms of individual potential.
 
 The individuals to be represented in the pairwise potential plots can either be specified explicitly through \code{sub.ids}, chosen randomly
- (\code{sample} = 'random'), or all individuals can be selected (\code{sample} = 'all'). The default is to randonly select 9 individuals.
+ (\code{sample} = 'random'), or all individuals can be selected (\code{sample} = 'all'). The default is to randomly select 9 individuals.
  If multiple years are being plotted, the subset is sampled from all years and the same individuals will be represented in each year, if possible.
  If fewer than three individuals from the subset are available in a year, no network diagram or heatmap will be returned for that year.
 }

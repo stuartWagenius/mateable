@@ -38,7 +38,7 @@ Visualize multiple dimensions of mating potential
 \details{
 The individuals to be represented in the pairwise potential plots can either be specified explicitly
 through \code{sub.ids}, chosen randomly (\code{sample} = 'random'), or all individuals can be selected (\code{sample} = 'all').
-The default is to randonly select 9 individuals. If multiple years are being plotted, the subset is sampled from all years
+The default is to randomly select 9 individuals. If multiple years are being plotted, the subset is sampled from all years
 and the same individuals will be represented in each year, if possible.
 }
 \examples{

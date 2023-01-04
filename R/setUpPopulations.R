@@ -70,7 +70,7 @@ simulateScene <- function(size = 30, meanSD = "2012-07-12", sdSD = 6, meanDur = 
 ##' information in the data frame, including the original column names,
 ##' and the origin of the date columns. If multiYear = TRUE,
 ##' the return value will be a list of matingScene data frames where each
-##' element in the list represents one year. If split is specified, the return value will be a list of matingScene data frames where each element in the list represents a value of the specifed variable. See details for more information
+##' element in the list represents one year. If split is specified, the return value will be a list of matingScene data frames where each element in the list represents a value of the specified variable. See details for more information
 ##' on attributes and how to work with multi-year data.
 ##' @details The input dataframe can contain information about locations of
 ##' individuals in 1, 2, or 3 dimensions of a mating scenes.
@@ -92,7 +92,7 @@ simulateScene <- function(size = 30, meanSD = "2012-07-12", sdSD = 6, meanDur = 
 ##' from integers to dates.\cr
 ##' If no temporal data are available except the year in which it was
 ##' collected and df is a multi-year data set, put the collection year into the
-##' column labelled as startCol and set dateFormat = "%Y" and that will split
+##' column labeled as startCol and set dateFormat = "%Y" and that will split
 ##' the data appropriately.
 ##' @author Danny Hanson
 makeScene <- function (df, multiYear = FALSE, startCol = "start", endCol = "end",
