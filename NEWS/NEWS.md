@@ -11,4 +11,4 @@
 ## Bug Fixes and Minor Improvements
 *The plot limits shown by \code{plotScene()} for multi-year scenes are now accurate in all years.
 *\code{proximity()} no longer throws an error in calculating measures proximity for multi-year scenes.
-
+*We made updates to .cpp export files to maintain compatibility with current verions of Rcpp and R 4.2.2.
