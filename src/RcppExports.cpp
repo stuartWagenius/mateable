@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // pair_si_ech
 NumericMatrix pair_si_ech(IntegerVector s1, IntegerVector s2);
 RcppExport SEXP _mateable_pair_si_ech(SEXP s1SEXP, SEXP s2SEXP) {
