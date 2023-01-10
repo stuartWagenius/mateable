@@ -11,7 +11,9 @@ This submission adds features to existing functions through the addition of argu
 
 0 errors | 0 warnings | 0 notes
 
-* This is an update.
+* New submission
+
+Package was archived on CRAN on 2020-10-02 as check issues were not corrected in time.
 
 ## Reverse dependencies
 
