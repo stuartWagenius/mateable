@@ -9,7 +9,7 @@
 #' @name mateable-package
 #' @aliases mateable mateable-package
 #' @author Stuart Wagenius, Danny Hanson, Amy Waananen
-#' @references Background: \url{http://echinaceaProject.org/}
+#' @references Background: \url{http://www.echinaceaProject.org/}
 #' @examples
 #' library(mateable)
 
