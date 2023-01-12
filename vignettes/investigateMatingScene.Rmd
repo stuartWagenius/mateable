@@ -1,12 +1,12 @@
 ---
-title: "Investigate mating scenes"
-author: "Stuart Wagenius, Danny Hanson, and Amy Waananen"
+title: "Investigate Mating Scenes"
+author: "Stuart Wagenius, Danny Hanson, Amy Waananen"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Investigate mating scenes}
+  %\VignetteIndexEntry{Investigate Mating Scenes}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r include=FALSE}

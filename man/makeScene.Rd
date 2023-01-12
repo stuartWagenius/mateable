@@ -4,10 +4,20 @@
 \alias{makeScene}
 \title{Create a matingScene object from a data frame}
 \usage{
-makeScene(df, multiYear = FALSE, startCol = "start", endCol = "end",
-  xCol = "x", yCol = "y", s1Col = "s1", s2Col = "s2",
-  idCol = "id", otherCols = NULL, dateFormat = "\%Y-\%m-\%d",
-  split = NULL)
+makeScene(
+  df,
+  multiYear = FALSE,
+  startCol = "start",
+  endCol = "end",
+  xCol = "x",
+  yCol = "y",
+  s1Col = "s1",
+  s2Col = "s2",
+  idCol = "id",
+  otherCols = NULL,
+  dateFormat = "\%Y-\%m-\%d",
+  split = NULL
+)
 }
 \arguments{
 \item{df}{a data frame containing information about a mating scene,
@@ -45,7 +55,7 @@ or a list of dataframes. Attributes of the matingScene object indicate the type 
 information in the data frame, including the original column names,
 and the origin of the date columns. If multiYear = TRUE,
 the return value will be a list of matingScene data frames where each
-element in the list represents one year. If split is specified, the return value will be a list of matingScene data frames where each element in the list represents a value of the specifed variable. See details for more information
+element in the list represents one year. If split is specified, the return value will be a list of matingScene data frames where each element in the list represents a value of the specified variable. See details for more information
 on attributes and how to work with multi-year data.
 }
 \description{
@@ -73,7 +83,7 @@ origin that can be used when converting the columns start and end
 from integers to dates.\cr
 If no temporal data are available except the year in which it was
 collected and df is a multi-year data set, put the collection year into the
-column labelled as startCol and set dateFormat = "%Y" and that will split
+column labeled as startCol and set dateFormat = "%Y" and that will split
 the data appropriately.
 }
 \author{

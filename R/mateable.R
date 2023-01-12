@@ -1,7 +1,7 @@
 #' Tools to simulate, manage, visualize, and jointly analyze spatially and
 #' temporally explicit datasets of mating potential
 #'
-#' This package faciltates the investigation of three dimensions of mating
+#' This package facilitates the investigation of three dimensions of mating
 #' potential. It provides a method for simulating populations and includes a
 #' dataset.
 #'
@@ -9,7 +9,7 @@
 #' @name mateable-package
 #' @aliases mateable mateable-package
 #' @author Stuart Wagenius, Danny Hanson, Amy Waananen
-#' @references Background: \url{http://echinaceaProject.org/}
+#' @references Background: \url{http://www.echinaceaProject.org/}
 #' @examples
 #' library(mateable)
 

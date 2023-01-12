@@ -4,13 +4,31 @@
 \alias{plotScene}
 \title{graphical visualization of a mating scene object}
 \usage{
-plotScene(scene, dimension = "auto", dailyPoints = TRUE,
-  drawQuartiles = TRUE, sortBy = c("start", "end"), colorBy = NULL,
-  sub = NULL, N = 3, label.sub = TRUE, xlab.spat = NULL,
-  ylab.spat = NULL, pch = 19, pt.cex = 0.75, label.cex = 0.8,
-  plot.lim.zoom = FALSE, quartile.lwd = 1, quartile.col = "gray55",
-  peak.col = "gray27", labelID = FALSE, mt1 = "F", mt2 = "M",
-  leg.ncol = 1, ...)
+plotScene(
+  scene,
+  dimension = "auto",
+  dailyPoints = TRUE,
+  drawQuartiles = TRUE,
+  sortBy = c("start", "end"),
+  colorBy = NULL,
+  sub = NULL,
+  N = 3,
+  label.sub = TRUE,
+  xlab.spat = NULL,
+  ylab.spat = NULL,
+  pch = 19,
+  pt.cex = 0.75,
+  label.cex = 0.8,
+  plot.lim.zoom = FALSE,
+  quartile.lwd = 1,
+  quartile.col = "gray55",
+  peak.col = "gray27",
+  labelID = FALSE,
+  mt1 = "F",
+  mt2 = "M",
+  leg.ncol = 1,
+  ...
+)
 }
 \arguments{
 \item{scene}{a matingScene object}

@@ -4,8 +4,13 @@
 \alias{matingSummary}
 \title{Summarize a Mating Scene}
 \usage{
-matingSummary(scene, type = "auto", k = 1,
-  compatMethod = "si_echinacea", as.data.frame = FALSE)
+matingSummary(
+  scene,
+  type = "auto",
+  k = 1,
+  compatMethod = "si_echinacea",
+  as.data.frame = FALSE
+)
 }
 \arguments{
 \item{scene}{a matingScene object}

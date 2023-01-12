@@ -4,8 +4,15 @@
 \alias{dailyOMP}
 \title{Calculate daily outcrossed mating potential}
 \usage{
-dailyOMP(scene, k = 3, days = NULL, gamma = 1/13.3,
-  nn.constant = FALSE, sum = FALSE, mean = FALSE)
+dailyOMP(
+  scene,
+  k = 3,
+  days = NULL,
+  gamma = 1/13.3,
+  nn.constant = FALSE,
+  sum = FALSE,
+  mean = FALSE
+)
 }
 \arguments{
 \item{scene}{a matingScene object}
@@ -20,7 +27,7 @@ dailyOMP(scene, k = 3, days = NULL, gamma = 1/13.3,
 
 \item{sum}{logical; indicates if the return should be a sum of an individual's daily outcrossed mating potential over the range specified by days}
 
-\item{mean}{logical; indicates if the return should be the mean of an individual's daily outcrossed mating potential over teh range of days that the individual was receptive to mating}
+\item{mean}{logical; indicates if the return should be the mean of an individual's daily outcrossed mating potential over the range of days that the individual was receptive to mating}
 }
 \value{
 a named matrix with a row for each id and a column for each day, and entries corresponding to ids' OMP each day

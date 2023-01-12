@@ -4,8 +4,7 @@
 \alias{overlap}
 \title{Pairwise Mating Timing Comparison}
 \usage{
-overlap(scene, overlapOrTotal = c("overlap", "total"),
-  compareToSelf = FALSE)
+overlap(scene, overlapOrTotal = c("overlap", "total"), compareToSelf = FALSE)
 }
 \arguments{
 \item{scene}{a matingScene object}

@@ -7,7 +7,7 @@
 \title{Tools to simulate, manage, visualize, and jointly analyze spatially and
 temporally explicit datasets of mating potential}
 \description{
-This package faciltates the investigation of three dimensions of mating
+This package facilitates the investigation of three dimensions of mating
 potential. It provides a method for simulating populations and includes a
 dataset.
 }
@@ -33,7 +33,7 @@ ee <- makeScene(ech2012, FALSE, "firstDay", "lastDay", "Ecoord", "Ncoord", idCol
 
 }
 \references{
-Background: \url{http://echinaceaProject.org/}
+Background: \url{http://www.echinaceaProject.org/}
 }
 \author{
 Stuart Wagenius, Danny Hanson, Amy Waananen
