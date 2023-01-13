@@ -1,8 +1,8 @@
 \name{NEWS}
-\title{News for Package \pkg(mateable)}
+\title{News for Package \pkg{mateable}}
 
 
-\section{Changes in version 0.3.2}
+\section{Changes in version 0.3.2 (2022-01-13)}{
   \itemize{
     \item \code{makeScene} now includes an argument, \code{split}, to split a dataframe by the level of a specified variable.
     \item \code{plotScene} now includes arguments \code{sortBy} and \code{colorBy} to allow users to control the stacking order and color of temporal plots by specified variables.
@@ -15,3 +15,4 @@
     \item The plot limits shown by \code{plotScene} for multi-year scenes are now accurate in all years.
     \item \code{proximity} no longer throws an error in calculating measures proximity for multi-year scenes.
   }
+}
