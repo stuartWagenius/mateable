@@ -4,7 +4,7 @@ We added new arguments to several functions to increase options for summarizing 
 
 ### mateable 0.3.1 is now available on CRAN.
 
-We added a [vignette](https://cran.r-project.org/web/packages/mateable/vignettes/investigateMatingScene.html) and many new features to this version.
+We added a vignette and many new features to this version.
 
 ### mateable 0.3.0
 
