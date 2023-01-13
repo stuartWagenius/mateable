@@ -1,7 +1,7 @@
 Package: mateable
 Type: Package
 Title: Tools to Assess Mating Potential in Space and Time
-Version: 0.3.2.9000
+Version: 0.3.2
 Date: 2023-01-04
 Authors@R: c(
     person("Stuart", "Wagenius", email = "stuart.wagenius@gmail.com", role = c("cre", "aut")),
