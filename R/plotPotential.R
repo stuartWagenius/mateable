@@ -29,8 +29,8 @@ plotPotential <-   function(matPot,
                             density = T,
                             sub.ids = NULL, N = 9, sample = "random", ...){
 
-  par.orig <- par("mar", "oma", "mfrow", "xpd")
-  on.exit(par(par.orig))
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if(!sample %in% c("random", "all")) {warning("sample must be 'random' or 'all'")}
 
@@ -190,7 +190,10 @@ plot_net <- function (flowmat, names = NULL, add = FALSE,
                       fig.size = 1.7, mar = c(0.25, 0.25, 0.25, 0.25), nullflow = NULL, minflow = NULL, maxflow = NULL,
                       maxarrow = 10, minarrow = 1, bty = "o",
                       labz.size = 0.5, xpd= TRUE, ...){
-  nm <- par("mar")
+
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+
   components <- names
   numcomp <- length(components)
   flowmatrix <- flowmat
@@ -251,6 +254,5 @@ plot_net <- function (flowmat, names = NULL, add = FALSE,
       }
     }
   }
-  par(mar = nm)
 }
 

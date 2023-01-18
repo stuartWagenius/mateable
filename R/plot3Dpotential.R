@@ -28,9 +28,8 @@ plot3DPotential <-   function(matPots,
                               density = TRUE,
                               sub.ids = NULL, N = 3, sample = NA,
                               text.cex = 0.7, pt.cex = 0.7){
-  nm <- par("mar")
-  noma <- par('oma')
-  nmfrow <- par('mfrow')
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if(!is.list(matPots[[1]][[1]][1])){
     matPots<-lapply(matPots, function(x) list(x))
@@ -208,6 +207,5 @@ plot3DPotential <-   function(matPots,
   } else {
     stop('wrong number of potential types (dimensions) in matPots: must be a list of two or three matPot objects. If you want to visualize one matPot object, use function plotPotential.')
   }
-  par(oma = noma, mar = nm, mfrow = nmfrow)
 }
 

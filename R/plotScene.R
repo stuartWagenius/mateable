@@ -42,14 +42,14 @@ plotScene <- function(scene, dimension = "auto",
                       sub = NULL, N = 3, label.sub = TRUE,
                       xlab.spat = NULL, ylab.spat = NULL,
                       pch = 19, pt.cex = 0.75, label.cex = 0.8,
-                      plot.lim.zoom  = FALSE, # this could use a better name, but I don't know what
+                      plot.lim.zoom  = FALSE,
                       quartile.lwd = 1, quartile.col = 'gray55', peak.col = 'gray27',
                       labelID = FALSE, mt1 = 'F', mt2 = 'M', leg.ncol = 1,
                       ...){
 
   dimension <- match.arg(dimension, c("auto", "t", "s", "mt"),several.ok = TRUE)
-  par.orig <- par("mfrow", "xpd", "mar", "oma")
-  on.exit(par(par.orig))
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if (!is.list(scene[[1]])){
     scene <- list(scene)
