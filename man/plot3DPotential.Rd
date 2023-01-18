@@ -32,6 +32,9 @@ plot3DPotential(
 
 \item{pt.cex}{specify point expansion factor (point size relative to device default)}
 }
+\value{
+No return value, called to draw a plot
+}
 \description{
 Visualize multiple dimensions of mating potential
 }
