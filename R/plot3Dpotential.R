@@ -99,19 +99,19 @@ plot3DPotential <-   function(matPots,
     if (subject %in% 'ind'){
       ind <- mapply(function(x,y) merge(x$ind, y$ind), sync, compat, SIMPLIFY = FALSE)
     } else {
-      pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(y$pair)[1],ndim)), sync, compat, SIMPLIFY = F)
+      pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(y$pair)[1],ndim)), sync, compat, SIMPLIFY = FALSE)
     }
   } else if (proximity & compatibility){
     if(subject %in% 'ind'){
-      ind <- mapply(function(x,y) merge(x$ind, y$ind), prox, compat, SIMPLIFY = F)
+      ind <- mapply(function(x,y) merge(x$ind, y$ind), prox, compat, SIMPLIFY = FALSE)
     } else {
-      pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(x$pair)[1],ndim)), prox, compat, SIMPLIFY = F)
+      pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(x$pair)[1],ndim)), prox, compat, SIMPLIFY = FALSE)
     }
   } else if (synchrony & proximity){
     if(subject %in% 'ind'){
-      ind <- mapply(function(x,y) merge(x$ind, y$ind), sync, prox, SIMPLIFY = F)
+      ind <- mapply(function(x,y) merge(x$ind, y$ind), sync, prox, SIMPLIFY = FALSE)
     } else {
-      pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(x$pair)[1],ndim)), sync, prox, SIMPLIFY = F)
+      pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(x$pair)[1],ndim)), sync, prox, SIMPLIFY = FALSE)
     }
   }
 
