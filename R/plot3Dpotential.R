@@ -9,6 +9,7 @@
 ##' @param N integer, indicates the number of individuals to sample if sub.ids = 'random' (default N = 3)
 ##' @param text.cex specify text expansion factor (text size relative to device default)
 ##' @param pt.cex specify point expansion factor (point size relative to device default)
+##' @return No return value, called to draw a plot
 ##' @details The individuals to be represented in the pairwise potential plots can either be specified explicitly
 ##' through \code{sub.ids}, chosen randomly (\code{sample} = 'random'), or all individuals can be selected (\code{sample} = 'all').
 ##' The default is to randomly select 9 individuals. If multiple years are being plotted, the subset is sampled from all years
@@ -137,7 +138,7 @@ plot3DPotential <-   function(matPots,
       }
       axis(2,  cex.axis = 0.85, las = 2)
       if (i == len){
-        # mtext(main, 3, outer = T, line = 1)
+        # mtext(main, 3, outer = TRUE, line = 1)
         axis(1, cex.axis = 0.85)
         mtext(xlab,1, cex = 0.75, outer = TRUE, line = 2)
         mtext(ylab,2,cex = 0.75, outer = TRUE, line = 2)
@@ -182,9 +183,9 @@ plot3DPotential <-   function(matPots,
       axis(2,  cex.axis = 0.85, las = 2)
       if (i == len){
         axis(1, cex.axis = 0.85)
-        # mtext(main, 3, outer = T, line = 1)
-        mtext('synchrony',1, cex = 0.75, outer = T, line = 1)
-        mtext('proximity',2, cex = 0.75, outer = T, line = 1)
+        # mtext(main, 3, outer = TRUE, line = 1)
+        mtext('synchrony',1, cex = 0.75, outer = TRUE, line = 1)
+        mtext('proximity',2, cex = 0.75, outer = TRUE, line = 1)
         mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = F, line = 4, font = 1)
         par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
         plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")

@@ -14,7 +14,7 @@
 ##' @param mt2 label for mating type '2', if dioecious; defaults to 'M'
 ##' @param plot.lim.zoom if TRUE, spatial plot limits for lists of scenes are set by the maximum from all scenes
 ##' @param ... optional arguments for the plot function
-##' @return nothing
+##' @return No return value, called to draw a plot
 ##' @export
 ##' @author Amy Waananen
 ##' @seealso see generic function \code{\link{points}} for values of \code{pch}
@@ -138,7 +138,7 @@ plot3DScene <- function(scene, dimension = "auto",
         mtext(xcoord,side = 1,adj = 0.5, cex = 0.75, line = 2)
         par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
         plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-        legend('topleft', legend = c(format(as.Date(minstart, origin = '1970-01-01'), format = "%b %d"),' ',' ',' ', format(as.Date(round(mean(c(minstart,maxstart))), origin = '1970-01-01'),format = "%b %d"),'',' ',' ',format(as.Date(maxstart,origin = '1970-01-01'), format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = T, y.intersp = 0.68, title = 'start date', cex = 0.75)
+        legend('topleft', legend = c(format(as.Date(minstart, origin = '1970-01-01'), format = "%b %d"),' ',' ',' ', format(as.Date(round(mean(c(minstart,maxstart))), origin = '1970-01-01'),format = "%b %d"),'',' ',' ',format(as.Date(maxstart,origin = '1970-01-01'), format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = TRUE, y.intersp = 0.68, title = 'start date', cex = 0.75)
       }
     } else if (temp & spat){
       if (is.null(pch)) {
@@ -160,8 +160,8 @@ plot3DScene <- function(scene, dimension = "auto",
         }
         par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
         plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-        # legend('topleft', legend = c(format(attr(scene.i,'origin')+minstart, format = "%b %d"),' ',' ',' ', format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))),format = "%b %d"),'',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = T, y.intersp = 0.68, title = 'start date', cex = 0.75)
-        legend('topleft', legend = c(format(as.Date(minstart, origin = '1970-01-01'), format = "%b %d"),' ',' ',' ', format(as.Date(round(mean(c(minstart,maxstart))), origin = '1970-01-01'),format = "%b %d"),'',' ',' ',format(as.Date(maxstart,origin = '1970-01-01'), format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = T, y.intersp = 0.68, title = 'start date', cex = 0.75)
+        # legend('topleft', legend = c(format(attr(scene.i,'origin')+minstart, format = "%b %d"),' ',' ',' ', format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))),format = "%b %d"),'',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = TRUE, y.intersp = 0.68, title = 'start date', cex = 0.75)
+        legend('topleft', legend = c(format(as.Date(minstart, origin = '1970-01-01'), format = "%b %d"),' ',' ',' ', format(as.Date(round(mean(c(minstart,maxstart))), origin = '1970-01-01'),format = "%b %d"),'',' ',' ',format(as.Date(maxstart,origin = '1970-01-01'), format = "%b %d")),fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'n',xpd = TRUE, y.intersp = 0.68, title = 'start date', cex = 0.75)
 
       }
     } else if(spat & comp){
@@ -211,7 +211,7 @@ plot3DScene <- function(scene, dimension = "auto",
         }
         plot(jitter(scene.i[,'s1']), jitter(scene.i[,'s2']), col = scene.i$cols,xlim = c(min(scene.i$s2),max(scene.i$s1)), ylim = c(min(scene.i$s2),max(scene.i$s1)), xaxt = 'n',yaxt = 'n', xlab = '', ylab = '', pch = pch)
         mtext(names(scene)[i],side = 2,cex = 0.75, line = 4.5, font = 2, las = 1)
-        mtext('s2', side = 2, outer = T, cex = 0.7)
+        mtext('s2', side = 2, outer = TRUE, cex = 0.7)
         abline(v = c(1:10) - 0.5, lty = 'dotted', col = 'lightgray')
         abline(h = c(1:10) - 0.5 , lty = 'dotted', col = 'lightgray')
         axis(2, at = smin:smax, labels = min(scene.i$s2):max(scene.i$s1), cex.axis = 0.75)
@@ -220,8 +220,8 @@ plot3DScene <- function(scene, dimension = "auto",
           text(scene.i.sub[, 's1'], scene.i.sub[, 's2'], scene.i.sub[, 'id'], pos = 3, cex =1, font = 2, ...)
         }
         if (i == 1){
-          # legend('topleft', legend = c(format(attr(scene.i,'origin')+ minstart, format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))), format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")), fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'o',xpd = T, y.intersp = 0.68, title = 'start date', inset = c(0.02,0.03), cex = 0.75)
-          legend('topleft', legend = c(format(minstart, format = "%b %d"),' ',' ',' ',format(round(mean(c(minstart,maxstart))), format = "%b %d"),' ',' ',' ',format(maxstart, format = "%b %d")), fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'o',xpd = T, y.intersp = 0.68, title = 'start date', inset = c(0.02,0.03), cex = 0.75)
+          # legend('topleft', legend = c(format(attr(scene.i,'origin')+ minstart, format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+round(mean(c(minstart,maxstart))), format = "%b %d"),' ',' ',' ',format(attr(scene.i,'origin')+maxstart, format = "%b %d")), fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'o',xpd = TRUE, y.intersp = 0.68, title = 'start date', inset = c(0.02,0.03), cex = 0.75)
+          legend('topleft', legend = c(format(minstart, format = "%b %d"),' ',' ',' ',format(round(mean(c(minstart,maxstart))), format = "%b %d"),' ',' ',' ',format(maxstart, format = "%b %d")), fill = colorRampPalette(c('blue','red'))(9),ncol = 1, bty = 'o',xpd = TRUE, y.intersp = 0.68, title = 'start date', inset = c(0.02,0.03), cex = 0.75)
 
         }
         if(i == nr){
