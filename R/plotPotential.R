@@ -10,6 +10,7 @@
 ##' @param N a positive number indicating the number of individuals to sample if sub.ids = 'random'
 ##' @param sample a character string specifying how to choose a subset of individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all" (see details).
 ##' @param ... optional arguments for the plot function
+##' @return No return value, called to draw plots
 ##' @details Options for \code{plotType} are 'hist' (histogram), 'net' (network diagram), 'heat' (heatmap), and 'auto'. Default value is 'auto':
 ##' if the mating potential object contains pairwise potential, 'auto' returns all plot types, otherwise it returns histograms of individual potential.
 ##' @details The individuals to be represented in the pairwise potential plots can either be specified explicitly through \code{sub.ids}, chosen randomly
@@ -26,7 +27,7 @@
 plotPotential <-   function(matPot,
                             subject = NULL,
                             plotType = 'auto',
-                            density = T,
+                            density = TRUE,
                             sub.ids = NULL, N = 9, sample = "random", ...){
 
   oldpar <- par(no.readonly = TRUE)
@@ -109,7 +110,7 @@ plotPotential <-   function(matPot,
       subMat<- poti[['pair']][which(attr(poti[['pair']],'idOrder') %in% sub.iids),which(attr(poti[['pair']],'idOrder') %in% sub.iids)]
 
       if ('hist' %in% pt){
-        hist(poti[['pair']], breaks = 15, prob = T, xlab = NULL, main = NULL, ylab = "")
+        hist(poti[['pair']], breaks = 15, prob = TRUE, xlab = NULL, main = NULL, ylab = "")
         mtext(names(matPot)[i],side = 2,adj = 0.5, cex = 0.75, line = 3, font = 2)
         if (i == nr){
           title(xlab = potential)

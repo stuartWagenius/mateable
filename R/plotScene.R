@@ -24,8 +24,7 @@
 ##' @param mt2 label for mating type '2', if dioecious
 ##' @param leg.ncol number of columns to include in legend, if colorBy is not NULL
 ##' @param ... standard graphical parameters
-##' @return nothing
-##' @return optional arguments for the plot function
+##' @return No return value, called to draw a plot
 ##' @details Population peak is defined by when maximum number individuals were reproductively receptive on one day. If multiple days had the same maximum number, peak is defined as the median of these dates.
 ##' @export
 ##' @author Amy Waananen
@@ -132,7 +131,7 @@ plotScene <- function(scene, dimension = "auto",
         cols.sub <- scene.i[scene.i$id %in% sub, 'cols']
       } else{
 
-        col.i <- merge(scene.i,colDF, by.x = colorBy, by.y = 'var', all.x = T, sort = F)
+        col.i <- merge(scene.i,colDF, by.x = colorBy, by.y = 'var', all.x = TRUE, sort = F)
         col.i <- col.i[order(col.i$index),]
         cols.seg <- col.i$color
         cols.pt <- col.i$color
@@ -216,7 +215,7 @@ plotScene <- function(scene, dimension = "auto",
       if (!is.null(sub)  & nrow(scene.i[scene.i$id %in% sub, ]) > 0){
         scene.i.sub <- scene.i[scene.i[, 'id'] %in% sub, ]
         if(label.sub){
-          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3,xpd = T,cex = label.cex, ...)
+          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3,xpd = TRUE, cex = label.cex, ...)
         }
         points(scene.i.sub[, 'x'], scene.i.sub[, 'y'], pch = 19,col = cols.sub, cex = pt.cex, ...)
       }

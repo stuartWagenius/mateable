@@ -294,7 +294,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
           fl <- matrix(nrow = length(ids),ncol = length(scene))
           for (i in 1:length(ids)){
             id <- ids[i]
-            fl[i,] <- unlist(lapply(scene, function(l) ifelse(id %in% l$id, T, F)))
+            fl[i,] <- unlist(lapply(scene, function(l) ifelse(id %in% l$id, TRUE, FALSE)))
           }
         } else {
           minStart <- function(x) min(x$start) + attr(x,'origin')
