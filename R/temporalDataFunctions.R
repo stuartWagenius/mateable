@@ -47,11 +47,11 @@ matingSummary <- function(scene, type = "auto", k = 1,
       spat <- F
       comp <- F
       if (type == "t") {
-        temp <- T
+        temp <- TRUE
       } else if (type == "s") {
-        spat <- T
+        spat <- TRUE
       } else if (type == "mt") {
-        comp <- T
+        comp <- TRUE
       }
     }
     if (temp) {
@@ -171,10 +171,10 @@ receptivityByDay <- function(scene, summary = FALSE, nameDate = TRUE) {
     nID <- length(ids)
     nDay <- length(days)
 
-    dailyMatrix <- matrix(F, nrow = nID, ncol = nDay)
+    dailyMatrix <- matrix(FALSE, nrow = nID, ncol = nDay)
     # for a given individual, say what days it was flowering on
     for (i in 1:nID) {
-      dailyMatrix[i, scene[i, "start"]:scene[i, "end"]] <- T
+      dailyMatrix[i, scene[i, "start"]:scene[i, "end"]] <- TRUE
     }
 
     rownames(dailyMatrix) <- ids
@@ -277,7 +277,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
                                 "average-peak", 'mean_interactions'))
   subject <- match.arg(subject, c("population", "pairwise",
                                   "individual", "all"),
-                       several.ok = T)
+                       several.ok = TRUE)
   averageType <- match.arg(averageType, c("mean", "median"))
 
   if (averageType == "mean") {
@@ -319,17 +319,17 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
             }
           }
         }
-        n <- sum(fl, na.rm = T) # number of flowering days/years for all individuals
-        nind <- apply(fl,1, sum, na.rm = T) # number of flowering days/years per individual
+        n <- sum(fl, na.rm = TRUE) # number of flowering days/years for all individuals
+        nind <- apply(fl,1, sum, na.rm = TRUE) # number of flowering days/years per individual
         if(method == 'sync_prop'){
-          prop <- apply(fl,2,function(x){(sum(x, na.rm = T)-1)/n}) # proportion of all flowering that occured each day/year, minus one (individual cannot mate with self)
+          prop <- apply(fl,2,function(x){(sum(x, na.rm = TRUE)-1)/n}) # proportion of all flowering that occured each day/year, minus one (individual cannot mate with self)
           indProp <- t(apply(fl,1,function(x){x*prop}))
-          totalIndProp <- apply(indProp,1,sum, na.rm = T) # proportion of all flowering that occured on the days/years an individual was flowering
+          totalIndProp <- apply(indProp,1,sum, na.rm = TRUE) # proportion of all flowering that occured on the days/years an individual was flowering
           indSync <- data.frame(id = ids, synchrony = totalIndProp, time = nind)
         }
         if(method == 'mean_interactions'){
-          tot <- apply(fl,2,function(x){sum(x, na.rm = T)}) # number of flowering individuals per day
-          indInt <- apply(fl,1,function(x){sum(x*tot, na.rm = T)})
+          tot <- apply(fl,2,function(x){sum(x, na.rm = TRUE)}) # number of flowering individuals per day
+          indInt <- apply(fl,1,function(x){sum(x*tot, na.rm = TRUE)})
           intPerDay <- indInt/nind
           indSync <- data.frame(id = ids, synchrony = intPerDay, time = nind)
         }
@@ -369,7 +369,7 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
       popSync <- NA
     } else if (method == "augspurger") {
       if (subject %in% c("pairwise", "all")) {
-        syncMatrix <- overlap(scene, "overlap", compareToSelf = T)
+        syncMatrix <- overlap(scene, "overlap", compareToSelf = TRUE)
         pairSync <- syncMatrix/scene$duration
       }
 
@@ -419,8 +419,8 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
 
     } else if (method == "overlap") {
       if (subject %in% c("pairwise", "all")) {
-        syncMatrix <- overlap(scene, "overlap", compareToSelf = T)
-        eitherMatrix <- overlap(scene, "total", compareToSelf = T)
+        syncMatrix <- overlap(scene, "overlap", compareToSelf = TRUE)
+        eitherMatrix <- overlap(scene, "total", compareToSelf = TRUE)
         pairSync <- syncMatrix/eitherMatrix
       }
 
@@ -451,12 +451,12 @@ synchrony <- function(scene, method, subject = "all", averageType = "mean",
       }
 
       if (subject %in% c("pairwise", "all")) {
-        syncMatrix <- overlap(scene, "overlap", compareToSelf = T)
-        eitherMatrix <- overlap(scene, "total", compareToSelf = T)
+        syncMatrix <- overlap(scene, "overlap", compareToSelf = TRUE)
+        eitherMatrix <- overlap(scene, "total", compareToSelf = TRUE)
         pairSyncInit <- syncMatrix/eitherMatrix
         pairSync <- matrix(nrow = n, ncol = n)
         for (i in 1:n) {
-          pairSync[i,] <- sort(pairSyncInit[i,], decreasing = T)
+          pairSync[i,] <- sort(pairSyncInit[i,], decreasing = TRUE)
         }
       }
 

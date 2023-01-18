@@ -137,7 +137,7 @@ Now we turn from the spatial dimension of the mating scene to the temporal dimen
 Just as we can calculate and visualize the spatial distances between all pairs using function `pairDist`, we can do the same in the temporal dimension with function `overlap`. Function `overlap` makes a matrix of overlapping days for all pairs and we can use a histogram to see the distribution.
 
 ```{r}
-eOver <- overlap(eelr, compareToSelf = T) # matrix of days overlapping
+eOver <- overlap(eelr, compareToSelf = TRUE) # matrix of days overlapping
 hist(eOver, 40, main = "Histogram of days overlapping between pair") 
 ```
 

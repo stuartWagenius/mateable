@@ -104,7 +104,7 @@ proximity <- function(scene, method, averageType = "mean",
 
       distNoDiag <- distMatrix[-seq(1, n^2, n+1)]
       distNoDiag[distNoDiag > zeroPotDist] <- zeroPotDist
-      distNoDiagMat <- matrix(distNoDiag, nrow = n, byrow = T)
+      distNoDiagMat <- matrix(distNoDiag, nrow = n, byrow = TRUE)
       pairProx2 <- 1 - distNoDiagMat/zeroPotDist
 
       indProx <- data.frame(id = scene$id, proximity = -1)
@@ -122,7 +122,7 @@ proximity <- function(scene, method, averageType = "mean",
 
       distNoDiag <- distMatrix[-seq(1, n^2, n+1)]
       distNoDiag[distNoDiag > zeroPotDist] <- zeroPotDist
-      distNoDiagMat <- matrix(distNoDiag, nrow = n, byrow = T)
+      distNoDiagMat <- matrix(distNoDiag, nrow = n, byrow = TRUE)
       pairProx2 <- (1 - distNoDiagMat/zeroPotDist)^2
 
       indProx <- data.frame(id = scene$id, proximity = -1)

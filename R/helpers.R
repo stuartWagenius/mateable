@@ -30,7 +30,7 @@ matingSummary.df <- function(matSum){
 simplify.potential.list <- function(s, subject){
   subject <- match.arg(subject, c("population", "pairwise",
                                   "individual", "all"),
-                       several.ok = T)
+                       several.ok = TRUE)
   if('all' %in% subject){
     subject <- c('population','pairwise','individual')
   }

@@ -110,7 +110,7 @@ makeScene <- function (df, multiYear = FALSE, startCol = "start", endCol = "end"
     newScene <- list()
     for (i in 1:length(years)) {
       newScene[[as.character(years[i])]] <-
-        makeScene(df[df$year %in% years[i],], F, startCol, endCol, xCol, yCol,
+        makeScene(df[df$year %in% years[i],], FALSE, startCol, endCol, xCol, yCol,
                   s1Col, s2Col, idCol, otherCols, dateFormat, split)
     }
   } else if(!is.null(split)){
@@ -118,7 +118,7 @@ makeScene <- function (df, multiYear = FALSE, startCol = "start", endCol = "end"
     newScene <- list()
     for (i in 1:length(splitTo)){
       newScene[[as.character(splitTo[i])]] <-
-        makeScene(df[df[,split] %in% splitTo[i],], F, startCol, endCol, xCol, yCol,
+        makeScene(df[df[,split] %in% splitTo[i],], FALSE, startCol, endCol, xCol, yCol,
                   s1Col, s2Col, idCol, otherCols, dateFormat)
     }
   } else {

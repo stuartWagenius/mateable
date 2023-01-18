@@ -59,16 +59,16 @@ plotScene <- function(scene, dimension = "auto",
     spat <- attr(scene[[1]], "s")
     comp <- attr(scene[[1]], "mt")
   } else {
-    temp <- F
-    spat <- F
-    comp <- F
-    if ("t" %in% dimension) temp <- T
-    if ("s" %in% dimension) spat <- T
-    if ("mt" %in% dimension) comp <- T
+    temp <- FALSE
+    spat <- FALSE
+    comp <- FALSE
+    if ("t" %in% dimension) temp <- TRUE
+    if ("s" %in% dimension) spat <- TRUE
+    if ("mt" %in% dimension) comp <- TRUE
   }
   nr <- length(scene)
   nc <- sum(temp,spat,comp)
-  par(mfrow = c(nr,nc), xpd = F)
+  par(mfrow = c(nr,nc), xpd = FALSE)
 
   if(spat){
     emin <- min(unlist(lapply(scene, function(x) x['x'])))
@@ -90,10 +90,10 @@ plotScene <- function(scene, dimension = "auto",
     smin <- min(unlist(lapply(scene, function(x) as.numeric(unlist(x[,c('s1','s2')])))))
     smax <- max(unlist(lapply(scene, function(x) as.numeric(unlist(x[,c('s1','s2')])))))
     if (length(unique(unlist(lapply(scene, function(x) as.numeric(unlist(x[,c('s1','s2')]))))))==2){
-      dioecious <- T
+      dioecious <- TRUE
       mtmax <- max(unlist(lapply(scene, function(x)table(x$s1))))
     } else {
-      dioecious <- F
+      dioecious <- FALSE
     }
   }
 
@@ -131,7 +131,7 @@ plotScene <- function(scene, dimension = "auto",
         cols.sub <- scene.i[scene.i$id %in% sub, 'cols']
       } else{
 
-        col.i <- merge(scene.i,colDF, by.x = colorBy, by.y = 'var', all.x = TRUE, sort = F)
+        col.i <- merge(scene.i,colDF, by.x = colorBy, by.y = 'var', all.x = TRUE, sort = FALSE)
         col.i <- col.i[order(col.i$index),]
         cols.seg <- col.i$color
         cols.pt <- col.i$color
@@ -219,7 +219,7 @@ plotScene <- function(scene, dimension = "auto",
         }
         points(scene.i.sub[, 'x'], scene.i.sub[, 'y'], pch = 19,col = cols.sub, cex = pt.cex, ...)
       }
-      if(temp == F){
+      if(temp == FALSE){
         mtext(names(scene)[i],side = 2,adj = 0.5, cex = 0.75, line = 5, font = 2, las = 3)
       }
     }
@@ -260,7 +260,7 @@ plotScene <- function(scene, dimension = "auto",
         }
       }
 
-      if (temp == F & spat == F){
+      if (temp == FALSE & spat == FALSE){
         mtext(names(scene)[i],side = 2,adj = 0.5, cex = 0.75, line = 5, font = 2, las = 3)
       }
     }

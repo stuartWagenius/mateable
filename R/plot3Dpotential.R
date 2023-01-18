@@ -80,9 +80,9 @@ plot3DPotential <-   function(matPots,
 
   if (is.null(sub.ids)){
     if(sample %in% 'random'){
-      sub.ids <- sample(unique(unlist(sapply(matPots[[1]], function(x)x$ind$id, USE.NAMES = F))),N)
+      sub.ids <- sample(unique(unlist(sapply(matPots[[1]], function(x)x$ind$id, USE.NAMES = FALSE))),N)
     } else if(sample %in% 'all'){
-      sub.ids <-unique(unlist(sapply(matPots[[1]], function(x)x$ind$id, USE.NAMES = F)))
+      sub.ids <-unique(unlist(sapply(matPots[[1]], function(x)x$ind$id, USE.NAMES = FALSE)))
     }
   }
 
@@ -91,13 +91,13 @@ plot3DPotential <-   function(matPots,
 
   if (synchrony & proximity & compatibility){
     if(subject %in% 'ind'){
-      ind <- mapply(function(x,y,z) merge(merge(x$ind, y$ind),z$ind), sync, prox, compat, SIMPLIFY = F)
+      ind <- mapply(function(x,y,z) merge(merge(x$ind, y$ind),z$ind), sync, prox, compat, SIMPLIFY = FALSE)
     } else {
-      pair <- mapply(function(x,y,z) array(c(x$pair, y$pair, z$pair), dim = c(dim(x$pair)[1],dim(x$pair)[1],ndim)), sync, prox, compat, SIMPLIFY = F)
+      pair <- mapply(function(x,y,z) array(c(x$pair, y$pair, z$pair), dim = c(dim(x$pair)[1],dim(x$pair)[1],ndim)), sync, prox, compat, SIMPLIFY = FALSE)
     }
   } else if (synchrony & compatibility){
     if (subject %in% 'ind'){
-      ind <- mapply(function(x,y) merge(x$ind, y$ind), sync, compat, SIMPLIFY = F)
+      ind <- mapply(function(x,y) merge(x$ind, y$ind), sync, compat, SIMPLIFY = FALSE)
     } else {
       pair <- mapply(function(x,y) array(c(x$pair, y$pair), dim = c(dim(x$pair)[1],dim(y$pair)[1],ndim)), sync, compat, SIMPLIFY = F)
     }
@@ -143,13 +143,13 @@ plot3DPotential <-   function(matPots,
         mtext(xlab,1, cex = 0.75, outer = TRUE, line = 2)
         mtext(ylab,2,cex = 0.75, outer = TRUE, line = 2)
       }
-      mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = F, line = 3, font = 1)
+      mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = FALSE, line = 3, font = 1)
       if(subject %in% 'ind'){
-        if(!is.null(sub.ids) & any(ind[[i]][,'id'] %in% sub.ids)==T){
+        if(!is.null(sub.ids) & any(ind[[i]][,'id'] %in% sub.ids)==TRUE){
           text(ind[[i]][ind[[i]][,'id'] %in% sub.ids,2],ind[[i]][ind[[i]][,'id'] %in% sub.ids,3],ind[[i]][ind[[i]][,'id'] %in% sub.ids,1], cex = text.cex, pos = 3)
           points(ind[[i]][ind[[i]][,'id'] %in% sub.ids,2],ind[[i]][ind[[i]][,'id'] %in% sub.ids,3], cex = pt.cex, col = 'purple', pch = 19)
         } else {
-          if(!is.null(sub.ids) & any(attr(d1[[i]][['pair']],'idOrder') %in% sub.ids) ==T) {
+          if(!is.null(sub.ids) & any(attr(d1[[i]][['pair']],'idOrder') %in% sub.ids) ==TRUE) {
             text(pair[[i]][attr(d1[[i]][['pair']],'idOrder') %in% sub.ids,,1], pair[[i]][attr(d1[[i]][['pair']],'idOrder') %in% sub.ids,,2], attr(d1[[i]][['pair']],'idOrder')[attr(d1[[i]][['pair']],'idOrder') %in% sub.ids] , pos = 3, cex = text.cex)
           }
         }
@@ -186,7 +186,7 @@ plot3DPotential <-   function(matPots,
         # mtext(main, 3, outer = TRUE, line = 1)
         mtext('synchrony',1, cex = 0.75, outer = TRUE, line = 1)
         mtext('proximity',2, cex = 0.75, outer = TRUE, line = 1)
-        mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = F, line = 4, font = 1)
+        mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = FALSE, line = 4, font = 1)
         par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
         plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
         if (subject %in% 'ind'){
@@ -203,7 +203,7 @@ plot3DPotential <-   function(matPots,
           }
         }
       }
-      mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = F, line = 5, font = 1)
+      mtext(names(matPots[[1]][i]), 2, cex = 0.7, outer = FALSE, line = 5, font = 1)
     }
   } else {
     stop('wrong number of potential types (dimensions) in matPots: must be a list of two or three matPot objects. If you want to visualize one matPot object, use function plotPotential.')

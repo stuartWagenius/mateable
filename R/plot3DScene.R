@@ -52,16 +52,16 @@ plot3DScene <- function(scene, dimension = "auto",
 
   if (!is.null(sub)){
     if('random' %in% sub){
-      sub <- sample(unique(unlist(sapply(scene,function(x)x[,'id'], simplify = TRUE), use.names = F)),N)
+      sub <- sample(unique(unlist(sapply(scene,function(x)x[,'id'], simplify = TRUE), use.names = FALSE)),N)
     } else if('all' %in% sub){
-      sub <-unique(unlist(sapply(scene,function(x)x[,'id'], simplify = TRUE), use.names = F))
+      sub <-unique(unlist(sapply(scene,function(x)x[,'id'], simplify = TRUE), use.names = FALSE))
     }
   }
 
   nr <- length(scene)
 
   if (nr > 1 ){
-    par(mfrow = c(nr,1), xpd = T)
+    par(mfrow = c(nr,1), xpd = TRUE)
   }
 
   if(spat){
@@ -201,7 +201,7 @@ plot3DScene <- function(scene, dimension = "auto",
           mtext('date',side = 1,adj = 0.5, cex = 0.75, line = 3)
         }
       }else {
-        par(mar = c(1,3,0,1),xpd = F)
+        par(mar = c(1,3,0,1),xpd = FALSE)
         scene.i$s1 <- as.numeric(scene.i$s1)
         scene.i$s2 <- as.numeric(scene.i$s2)
         for (j in 1:nrow(scene.i)){
