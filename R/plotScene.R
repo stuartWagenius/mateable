@@ -32,7 +32,6 @@
 ##' @examples
 ##' pop <- simulateScene()
 ##' plotScene(pop)
-##' \dontrun{plotMap(NULL)}
 ##'
 ##'
 plotScene <- function(scene, dimension = "auto",
