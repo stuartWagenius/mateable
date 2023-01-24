@@ -89,7 +89,6 @@ Population peak is defined by when maximum number individuals were reproductivel
 \examples{
 pop <- simulateScene()
 plotScene(pop)
-\dontrun{plotMap(NULL)}
 
 
 }
