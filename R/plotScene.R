@@ -24,8 +24,7 @@
 ##' @param mt2 label for mating type '2', if dioecious
 ##' @param leg.ncol number of columns to include in legend, if colorBy is not NULL
 ##' @param ... standard graphical parameters
-##' @return nothing
-##' @return optional arguments for the plot function
+##' @return No return value, called to draw a plot
 ##' @details Population peak is defined by when maximum number individuals were reproductively receptive on one day. If multiple days had the same maximum number, peak is defined as the median of these dates.
 ##' @export
 ##' @author Amy Waananen
@@ -33,7 +32,6 @@
 ##' @examples
 ##' pop <- simulateScene()
 ##' plotScene(pop)
-##' \dontrun{plotMap(NULL)}
 ##'
 ##'
 plotScene <- function(scene, dimension = "auto",
@@ -42,14 +40,14 @@ plotScene <- function(scene, dimension = "auto",
                       sub = NULL, N = 3, label.sub = TRUE,
                       xlab.spat = NULL, ylab.spat = NULL,
                       pch = 19, pt.cex = 0.75, label.cex = 0.8,
-                      plot.lim.zoom  = FALSE, # this could use a better name, but I don't know what
+                      plot.lim.zoom  = FALSE,
                       quartile.lwd = 1, quartile.col = 'gray55', peak.col = 'gray27',
                       labelID = FALSE, mt1 = 'F', mt2 = 'M', leg.ncol = 1,
                       ...){
 
   dimension <- match.arg(dimension, c("auto", "t", "s", "mt"),several.ok = TRUE)
-  par.orig <- par("mfrow", "xpd", "mar", "oma")
-  on.exit(par(par.orig))
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if (!is.list(scene[[1]])){
     scene <- list(scene)
@@ -60,16 +58,16 @@ plotScene <- function(scene, dimension = "auto",
     spat <- attr(scene[[1]], "s")
     comp <- attr(scene[[1]], "mt")
   } else {
-    temp <- F
-    spat <- F
-    comp <- F
-    if ("t" %in% dimension) temp <- T
-    if ("s" %in% dimension) spat <- T
-    if ("mt" %in% dimension) comp <- T
+    temp <- FALSE
+    spat <- FALSE
+    comp <- FALSE
+    if ("t" %in% dimension) temp <- TRUE
+    if ("s" %in% dimension) spat <- TRUE
+    if ("mt" %in% dimension) comp <- TRUE
   }
   nr <- length(scene)
   nc <- sum(temp,spat,comp)
-  par(mfrow = c(nr,nc), xpd = F)
+  par(mfrow = c(nr,nc), xpd = FALSE)
 
   if(spat){
     emin <- min(unlist(lapply(scene, function(x) x['x'])))
@@ -91,10 +89,10 @@ plotScene <- function(scene, dimension = "auto",
     smin <- min(unlist(lapply(scene, function(x) as.numeric(unlist(x[,c('s1','s2')])))))
     smax <- max(unlist(lapply(scene, function(x) as.numeric(unlist(x[,c('s1','s2')])))))
     if (length(unique(unlist(lapply(scene, function(x) as.numeric(unlist(x[,c('s1','s2')]))))))==2){
-      dioecious <- T
+      dioecious <- TRUE
       mtmax <- max(unlist(lapply(scene, function(x)table(x$s1))))
     } else {
-      dioecious <- F
+      dioecious <- FALSE
     }
   }
 
@@ -132,7 +130,7 @@ plotScene <- function(scene, dimension = "auto",
         cols.sub <- scene.i[scene.i$id %in% sub, 'cols']
       } else{
 
-        col.i <- merge(scene.i,colDF, by.x = colorBy, by.y = 'var', all.x = T, sort = F)
+        col.i <- merge(scene.i,colDF, by.x = colorBy, by.y = 'var', all.x = TRUE, sort = FALSE)
         col.i <- col.i[order(col.i$index),]
         cols.seg <- col.i$color
         cols.pt <- col.i$color
@@ -216,11 +214,11 @@ plotScene <- function(scene, dimension = "auto",
       if (!is.null(sub)  & nrow(scene.i[scene.i$id %in% sub, ]) > 0){
         scene.i.sub <- scene.i[scene.i[, 'id'] %in% sub, ]
         if(label.sub){
-          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3,xpd = T,cex = label.cex, ...)
+          text(scene.i.sub[, 'x'], scene.i.sub[, 'y'], scene.i.sub[, 'id'], pos = 3,xpd = TRUE, cex = label.cex, ...)
         }
         points(scene.i.sub[, 'x'], scene.i.sub[, 'y'], pch = 19,col = cols.sub, cex = pt.cex, ...)
       }
-      if(temp == F){
+      if(temp == FALSE){
         mtext(names(scene)[i],side = 2,adj = 0.5, cex = 0.75, line = 5, font = 2, las = 3)
       }
     }
@@ -261,7 +259,7 @@ plotScene <- function(scene, dimension = "auto",
         }
       }
 
-      if (temp == F & spat == F){
+      if (temp == FALSE & spat == FALSE){
         mtext(names(scene)[i],side = 2,adj = 0.5, cex = 0.75, line = 5, font = 2, las = 3)
       }
     }

@@ -10,6 +10,7 @@
 ##' @param N a positive number indicating the number of individuals to sample if sub.ids = 'random'
 ##' @param sample a character string specifying how to choose a subset of individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all" (see details).
 ##' @param ... optional arguments for the plot function
+##' @return No return value, called to draw plots
 ##' @details Options for \code{plotType} are 'hist' (histogram), 'net' (network diagram), 'heat' (heatmap), and 'auto'. Default value is 'auto':
 ##' if the mating potential object contains pairwise potential, 'auto' returns all plot types, otherwise it returns histograms of individual potential.
 ##' @details The individuals to be represented in the pairwise potential plots can either be specified explicitly through \code{sub.ids}, chosen randomly
@@ -26,11 +27,11 @@
 plotPotential <-   function(matPot,
                             subject = NULL,
                             plotType = 'auto',
-                            density = T,
+                            density = TRUE,
                             sub.ids = NULL, N = 9, sample = "random", ...){
 
-  par.orig <- par("mar", "oma", "mfrow", "xpd")
-  on.exit(par(par.orig))
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
 
   if(!sample %in% c("random", "all")) {warning("sample must be 'random' or 'all'")}
 
@@ -87,16 +88,16 @@ plotPotential <-   function(matPot,
     if(sample == 'random'){
       sub.ids <- sample(unique(unlist(sapply(matPot, function(x)x$ind$id))),N)
     } else if(sample == 'all'){
-      sub.ids <-unique(unlist(sapply(matPot, function(x)x$ind$id), use.names = F))
+      sub.ids <-unique(unlist(sapply(matPot, function(x)x$ind$id), use.names = FALSE))
     }
   }
 
   if ('ind' %in% subject){
-    hmax <- max(unlist(lapply(matPot,function(x)hist(x[[subject]][,potential], breaks = 15, plot = F)$breaks)))
-    hmin <- min(unlist(lapply(matPot,function(x)hist(x[[subject]][,potential], breaks = 15, plot = F)$breaks)))
+    hmax <- max(unlist(lapply(matPot,function(x)hist(x[[subject]][,potential], breaks = 15, plot = FALSE)$breaks)))
+    hmin <- min(unlist(lapply(matPot,function(x)hist(x[[subject]][,potential], breaks = 15, plot = FALSE)$breaks)))
   } else {
-    hmax <- max(unlist(lapply(matPot,function(x)hist(x[[subject]], breaks = 15, plot = F)$breaks)))
-    hmin <- min(unlist(lapply(matPot,function(x)hist(x[[subject]], breaks = 15, plot = F)$breaks)))
+    hmax <- max(unlist(lapply(matPot,function(x)hist(x[[subject]], breaks = 15, plot = FALSE)$breaks)))
+    hmin <- min(unlist(lapply(matPot,function(x)hist(x[[subject]], breaks = 15, plot = FALSE)$breaks)))
   }
 
   for (i in 1:length(matPot)){
@@ -109,19 +110,19 @@ plotPotential <-   function(matPot,
       subMat<- poti[['pair']][which(attr(poti[['pair']],'idOrder') %in% sub.iids),which(attr(poti[['pair']],'idOrder') %in% sub.iids)]
 
       if ('hist' %in% pt){
-        hist(poti[['pair']], breaks = 15, prob = T, xlab = NULL, main = NULL, ylab = "")
+        hist(poti[['pair']], breaks = 15, prob = TRUE, xlab = NULL, main = NULL, ylab = "")
         mtext(names(matPot)[i],side = 2,adj = 0.5, cex = 0.75, line = 3, font = 2)
         if (i == nr){
           title(xlab = potential)
         }
         if (density){
-          lines(density(poti[['pair']], na.rm = T))
+          lines(density(poti[['pair']], na.rm = TRUE))
         }
       }
 
       if ('net' %in% pt){
         if(length(sub.iids)< 3){
-          plot(1, type="n", axes=F, xlab="", ylab="")
+          plot(1, type="n", axes=FALSE, xlab="", ylab="")
         } else {
           subMat[upper.tri(subMat, diag = TRUE)] <- 0
           im <- poti[['ind']][which(iids %in% sub.iids), potential]
@@ -141,7 +142,7 @@ plotPotential <-   function(matPot,
 
       if ('heat' %in% pt){
         if(length(sub.iids) <= 2){
-          plot(1, type="n", axes=F, xlab="", ylab="")
+          plot(1, type="n", axes=FALSE, xlab="", ylab="")
         } else {
           if (potential == "compatibility") {
             diag(subMat) <- 0
@@ -149,8 +150,8 @@ plotPotential <-   function(matPot,
             diag(subMat) <- 1
           }
           subMat[upper.tri(subMat, diag = FALSE)] <- NA
-          leg.labs <- round(seq(max(subMat, na.rm = T),min(subMat, na.rm = T),length.out = 9), digits = 2)
-          image(x = 1:nrow(subMat),y = 1:nrow(subMat), z = subMat, axes = F, xlab = "", ylab = "", col = colorRampPalette(c('white','red'))(9))
+          leg.labs <- round(seq(max(subMat, na.rm = TRUE),min(subMat, na.rm = TRUE),length.out = 9), digits = 2)
+          image(x = 1:nrow(subMat),y = 1:nrow(subMat), z = subMat, axes = FALSE, xlab = "", ylab = "", col = colorRampPalette(c('white','red'))(9))
           legend("topleft", legend = c(leg.labs[1],'','','',leg.labs[5],'','','',leg.labs[9]), fill = colorRampPalette(c('red','white'))(9), bty = 'n', y.intersp = 0.65, pt.cex = 1.2)
           axis(1, 1:ncol(subMat), labels = sub.iids, tick = 0, cex.axis = -0.2 + 1/log10(nrow(subMat)), las = 3)
           axis(4, 1:ncol(subMat), labels = sub.iids, tick = 0, cex.axis = -0.2 + 1/log10(nrow(subMat)), las = 2)
@@ -162,7 +163,7 @@ plotPotential <-   function(matPot,
 
     } else if (subject %in% 'ind') {
       if ('hist' %in% pt){
-        hist(poti[[subject]][,potential], prob = TRUE, breaks = 15, main = NULL, axes = F, xlab = NULL,xlim = c(hmin,hmax), ylab = NULL)
+        hist(poti[[subject]][,potential], prob = TRUE, breaks = 15, main = NULL, axes = FALSE, xlab = NULL,xlim = c(hmin,hmax), ylab = NULL)
         title(ylab = 'density')
         axis(1)
         axis(2)
@@ -173,10 +174,10 @@ plotPotential <-   function(matPot,
           title(xlab = potential)
         }
         if (density){
-          lines(density(poti[[subject]][,potential], na.rm = T))
+          lines(density(poti[[subject]][,potential], na.rm = TRUE))
         }
         if(potential %in% 'knn.dist'){
-          mtext(paste('k = ',matPot[[1]][['ind']][1,'k']), side = 3, adj = 0.95, outer = T)
+          mtext(paste('k = ',matPot[[1]][['ind']][1,'k']), side = 3, adj = 0.95, outer = TRUE)
         }
       }
     }
@@ -190,7 +191,10 @@ plot_net <- function (flowmat, names = NULL, add = FALSE,
                       fig.size = 1.7, mar = c(0.25, 0.25, 0.25, 0.25), nullflow = NULL, minflow = NULL, maxflow = NULL,
                       maxarrow = 10, minarrow = 1, bty = "o",
                       labz.size = 0.5, xpd= TRUE, ...){
-  nm <- par("mar")
+
+  oldpar <- par(no.readonly = TRUE)
+  on.exit(par(oldpar))
+
   components <- names
   numcomp <- length(components)
   flowmatrix <- flowmat
@@ -251,6 +255,5 @@ plot_net <- function (flowmat, names = NULL, add = FALSE,
       }
     }
   }
-  par(mar = nm)
 }
 

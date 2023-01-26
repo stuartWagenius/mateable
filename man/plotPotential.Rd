@@ -8,7 +8,7 @@ plotPotential(
   matPot,
   subject = NULL,
   plotType = "auto",
-  density = T,
+  density = TRUE,
   sub.ids = NULL,
   N = 9,
   sample = "random",
@@ -31,6 +31,9 @@ plotPotential(
 \item{sample}{a character string specifying how to choose a subset of individuals to be represented in pairwise potential plots. Possible values are "random" (default) or "all" (see details).}
 
 \item{...}{optional arguments for the plot function}
+}
+\value{
+No return value, called to draw plots
 }
 \description{
 Visualize mating potential

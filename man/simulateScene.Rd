@@ -48,7 +48,6 @@ a location, and S-alleles
 }
 \examples{
 simulateScene()
-\dontrun{simulateScene(NULL)}
 }
 \seealso{
 \code{\link{makeScene}}

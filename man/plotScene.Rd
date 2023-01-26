@@ -78,9 +78,7 @@ plotScene(
 \item{...}{standard graphical parameters}
 }
 \value{
-nothing
-
-optional arguments for the plot function
+No return value, called to draw a plot
 }
 \description{
 Visualize a mating scene
@@ -91,7 +89,6 @@ Population peak is defined by when maximum number individuals were reproductivel
 \examples{
 pop <- simulateScene()
 plotScene(pop)
-\dontrun{plotMap(NULL)}
 
 
 }

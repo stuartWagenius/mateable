@@ -28,11 +28,14 @@ knitr::opts_chunk$set(fig.width=6, fig.height=4)
 This vignette consists of a brief introduction to the investigation of mating scenes using package `mateable`. A mating scene is a bout of mating where the coordinates of participating individuals are defined in one, two, or three dimensions: space, time, and compatibility. From such information we can quantify mating potential, the capacity for sexual reproduction based on the location, reproductive timing, and compatibility of prospective mates. Mating potential can be quantified for a pair of individuals based on the distance between them, the timing of their reproductive activity, and their compatibility. Similarly, mating potential can be defined for an individual within the context of the mating scene or for an entire scene.
 
 
-Begin by loading the package.
+Begin by loading the package and saving user parameters and options.
 
 ```{r}
 library(mateable)
 packageDescription("mateable")$Version
+
+oldpar <- par(no.readonly = TRUE)
+
 ```
 
 For any function in `mateable` you can learn more by typing a question mark before the function name, i.e. `?makeScene`. To learn all the functions, type `?mateable` and click index at the bottom of the page.
@@ -134,7 +137,7 @@ Now we turn from the spatial dimension of the mating scene to the temporal dimen
 Just as we can calculate and visualize the spatial distances between all pairs using function `pairDist`, we can do the same in the temporal dimension with function `overlap`. Function `overlap` makes a matrix of overlapping days for all pairs and we can use a histogram to see the distribution.
 
 ```{r}
-eOver <- overlap(eelr, compareToSelf = T) # matrix of days overlapping
+eOver <- overlap(eelr, compareToSelf = TRUE) # matrix of days overlapping
 hist(eOver, 40, main = "Histogram of days overlapping between pair") 
 ```
 
@@ -282,6 +285,12 @@ And, like before, we can visualize combinations of synchrony, proximity, and com
 ```{r, fig.height = 8}
 par(mfrow = c(3,1), mar = c(1,5,1,1), oma = c(4,4,4,0))
 plot3DPotential(list(syncMulti, proxMulti, compatMulti), subject = 'ind', pt.cex = 1, sub.ids = c(1,6,12,18,13,24,55,45,60))
+```
+
+Reset parameters and options.
+
+```{r}
+par(oldpar)
 ```
 
 ## Conclusion

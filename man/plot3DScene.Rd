@@ -48,7 +48,7 @@ plot3DScene(
 \item{...}{optional arguments for the plot function}
 }
 \value{
-nothing
+No return value, called to draw a plot
 }
 \description{
 Visualize multiple dimensions of a mating scene

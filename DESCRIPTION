@@ -1,6 +1,6 @@
 Package: mateable
 Type: Package
-Title: Tools to Assess Mating Potential in Space and Time
+Title: Assess Mating Potential in Space and Time
 Version: 0.3.2
 Date: 2023-01-04
 Authors@R: c(
@@ -10,9 +10,12 @@ Authors@R: c(
 Maintainer: Stuart Wagenius <stuart.wagenius@gmail.com>
 URL: https://github.com/stuartWagenius/mateable
 BugReports: https://github.com/stuartWagenius/mateable/issues
-Description: Tools to simulate, manage, visualize, and analyze
-    spatially and temporally explicit datasets of mating potential.
-    Implements methods to calculate synchrony, proximity, and compatibility.
+Description: Simulate, manage, visualize, and analyze spatially and temporally 
+    explicit datasets of mating potential. Implements methods to calculate 
+    synchrony, proximity, and compatibility.Synchrony calculations are based on 
+    methods described in Augspurger (1983) <doi:10.2307/2387650>, 
+    Kempenaers (1993) <doi:10.2307/3676415>, Ison et al. (2014) 
+    <doi:10.3732/ajb.1300065>, and variations on these, as described.
 License: GPL
 LazyData: true
 Imports:
