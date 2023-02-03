@@ -33,7 +33,7 @@ ee <- makeScene(ech2012, FALSE, "firstDay", "lastDay", "Ecoord", "Ncoord", idCol
 
 }
 \references{
-Background: \url{http://www.echinaceaProject.org/}
+Background: \url{https://echinaceaProject.org/}
 }
 \author{
 Stuart Wagenius, Danny Hanson, Amy Waananen
