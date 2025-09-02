@@ -1,8 +1,8 @@
 Package: mateable
 Type: Package
 Title: Assess Mating Potential in Space and Time
-Version: 0.3.2
-Date: 2023-01-04
+Version: 0.3.3
+Date: 2025-09-02
 Authors@R: c(
     person("Stuart", "Wagenius", email = "stuart.wagenius@gmail.com", role = c("cre", "aut")),
     person("Danny", "Hanson", email = "danny.hanson52@gmail.com", role = "aut"),
@@ -30,7 +30,7 @@ Suggests:
     knitr,
     rmarkdown
 LinkingTo: Rcpp
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 Encoding: UTF-8
 Biarch: true
