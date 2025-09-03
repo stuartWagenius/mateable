@@ -12,7 +12,7 @@ dataset.
 }
 \examples{
 library(mateable)
-"_PACKAGE"
+
 
 pop <- simulateScene()
 pop
