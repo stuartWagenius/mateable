@@ -11,8 +11,7 @@
 #' @references Background: \url{https://echinaceaProject.org/}
 #' @examples
 #' library(mateable)
-#' "_PACKAGE"
-
+#'
 #'
 #' pop <- simulateScene()
 #' pop
@@ -32,3 +31,4 @@
 #' ee <- makeScene(ech2012, FALSE, "firstDay", "lastDay", "Ecoord", "Ncoord", idCol = "tagNo")
 #'
 NULL
+"_PACKAGE"
